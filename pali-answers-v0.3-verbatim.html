@@ -1,0 +1,2950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pali Answers — Concept Brief v0.3 · Verbatim retrieval</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #F4EEE2;
+    --paper-deep:   #ECE3D2;
+    --paper-dark:   #E2D6BD;
+    --ink:          #141312;
+    --ink-soft:     #2A2725;
+    --ink-mute:     #5C544A;
+    --rule:         #C9BEA8;
+    --rule-soft:    #DFD3BC;
+    --green:        #006233;
+    --green-soft:   #2E7E51;
+    --red:          #CE1126;
+    --red-soft:     #D14152;
+    --olive:        #5A6B2E;
+    --warn:         #B25E00;
+    --code-bg:      #1B1A18;
+    --code-fg:      #F4EEE2;
+    --serif: "Fraunces", Georgia, serif;
+    --sans:  "Inter Tight", -apple-system, sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    font-feature-settings: "ss01", "cv11";
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(0,98,51,.04), transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(206,17,38,.03), transparent 50%);
+  }
+
+  /* ——— Top bar ——— */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    border-bottom: 1px solid var(--rule);
+    background: rgba(244,238,226,.92);
+    backdrop-filter: blur(10px);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .topbar-inner {
+    max-width: 1240px; margin: 0 auto;
+    padding: 14px 32px;
+    display: flex; gap: 24px; align-items: center; justify-content: space-between;
+  }
+  .topbar-mark {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--ink);
+  }
+  .topbar-mark .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 3px rgba(0,98,51,.18);
+  }
+  .topbar-mark .ver {
+    color: var(--ink-mute);
+    margin-left: 6px;
+  }
+  .topbar nav {
+    display: flex; gap: 22px;
+  }
+  .topbar nav a {
+    color: var(--ink-mute);
+    text-decoration: none;
+    transition: color .15s ease;
+  }
+  .topbar nav a:hover { color: var(--green); }
+  @media (max-width: 760px) {
+    .topbar nav { display: none; }
+  }
+
+  /* ——— Layout ——— */
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  .narrow { max-width: 920px; margin: 0 auto; padding: 0 32px; }
+
+  /* ——— Hero ——— */
+  .hero {
+    padding: 90px 0 70px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute;
+    top: -100px; right: -120px;
+    width: 460px; height: 460px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,98,51,.07), transparent 65%);
+    pointer-events: none;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 26px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow .pill {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3px 10px;
+    border-radius: 99px;
+    letter-spacing: .08em;
+  }
+  .eyebrow .pill.green { background: var(--green); }
+  .title {
+    font-family: var(--serif);
+    font-size: clamp(64px, 11vw, 148px);
+    font-weight: 400;
+    line-height: .92;
+    margin: 0 0 22px;
+    letter-spacing: -.025em;
+    font-variation-settings: "opsz" 144;
+  }
+  .title em {
+    font-style: italic;
+    color: var(--green);
+    font-weight: 300;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.1vw, 26px);
+    line-height: 1.42;
+    color: var(--ink-soft);
+    max-width: 780px;
+    font-weight: 300;
+    margin: 0 0 38px;
+  }
+  .lede strong {
+    font-weight: 500;
+    color: var(--ink);
+    background: linear-gradient(180deg, transparent 60%, rgba(206,17,38,.18) 60%);
+    padding: 0 3px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--rule);
+  }
+  .meta-grid > div {
+    padding: 22px 26px 22px 0;
+    border-right: 1px solid var(--rule);
+  }
+  .meta-grid > div:last-child { border-right: none; padding-right: 0; }
+  .meta-grid > div:first-child { padding-left: 0; }
+  .meta-grid .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+  }
+  .meta-grid .v {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .meta-grid .v small {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    font-style: normal;
+  }
+  @media (max-width: 760px) {
+    .meta-grid { grid-template-columns: 1fr 1fr; }
+    .meta-grid > div { padding: 16px 14px; }
+    .meta-grid > div:nth-child(2n) { border-right: none; }
+  }
+
+  /* ——— Sections ——— */
+  section.block {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  section.block.tinted {
+    background: var(--paper-deep);
+  }
+  .section-head {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 50px;
+    margin-bottom: 60px;
+    align-items: start;
+  }
+  @media (max-width: 760px) {
+    .section-head { grid-template-columns: 1fr; gap: 18px; }
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--green);
+    padding-top: 14px;
+    border-top: 2px solid var(--green);
+    width: fit-content;
+  }
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4.8vw, 64px);
+    font-weight: 400;
+    line-height: 1.02;
+    margin: 0 0 22px;
+    letter-spacing: -.02em;
+  }
+  h2 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--green);
+  }
+  .section-sub {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 720px;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  /* ——— Problem cards (§01) ——— */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 900px) { .problem-grid { grid-template-columns: 1fr; } }
+  .problem-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 28px;
+    position: relative;
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  .problem-card:hover {
+    border-color: var(--ink-soft);
+    transform: translateY(-3px);
+  }
+  .problem-card .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+  .problem-card h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+  .problem-card p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .problem-card code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: var(--paper-dark);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-mark">
+      <span class="dot"></span>
+      Pali Answers
+      <span class="ver">/ Concept Brief v0.3 · Verbatim retrieval</span>
+    </div>
+    <nav>
+      <a href="#concept">Concept</a>
+      <a href="#dual">Dual System</a>
+      <a href="#method">Method</a>
+      <a href="#themes">Themes</a>
+      <a href="#sample">Flows</a>
+      <a href="#stack">Stack</a>
+      <a href="#cost">Cost</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span class="pill green">v0.3</span>
+      <span>Revision · Verbatim retrieval · PIPD feedback applied</span>
+      <span>·</span>
+      <span>For internal review</span>
+    </div>
+    <h1 class="title">Pali<br><em>Answers.</em></h1>
+    <p class="lede">
+      A verbatim-retrieval answering tool that meets the most common talking points used to deny, distort, or relativise the Palestinian condition. <strong>Two doors, four routes, one corpus:</strong> a search bot that recognises questions, keywords, and out-of-scope queries — and a themed catalog of 13 myth categories. The corpus is the answer; the model never speaks for itself.
+    </p>
+
+    <div class="meta-grid">
+      <div>
+        <div class="k">Surfaces</div>
+        <div class="v">Search · Browse <small>Verbatim retrieval</small></div>
+      </div>
+      <div>
+        <div class="k">Knowledge base</div>
+        <div class="v">~72 myths · 300+ answers <small>13 themes · 600+ citations</small></div>
+      </div>
+      <div>
+        <div class="k">Volume target</div>
+        <div class="v">5K — 10K queries / month <small>Subpage of communicatingpalestine.org</small></div>
+      </div>
+      <div>
+        <div class="k">LLM role</div>
+        <div class="v">Classifier only <small>No generation in output</small></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== §01 CONCEPT ===== -->
+<section class="block" id="concept">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">§01 — Concept</div>
+      <div>
+        <h2>The information environment is <em>asymmetric.</em> The tool corrects a small part of that.</h2>
+        <p class="section-sub">Pali Answers does not try to "win arguments," does not "explain in its own words," and does not generate new content on the fly. It surfaces a curated, sourced corpus — verbatim — to ordinary users encountering common talking points. The architecture is built around <em>not</em> rewriting the editorial team's work.</p>
+      </div>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="tag">Problem 01</div>
+        <h3>Talking points outrun corrections.</h3>
+        <p>The same dozen claims circulate everywhere — "Israel left Gaza in 2005", "Hamas = ISIS", "from the river to the sea is genocidal". Each takes seconds to deploy and hours to refute properly.</p>
+      </div>
+      <div class="problem-card">
+        <div class="tag">Problem 02</div>
+        <h3>General-purpose AI hedges.</h3>
+        <p>Mainstream chatbots tend to launder these claims as "complex" or "two-sided." They rarely point users to UN, ICJ, B'Tselem, HRW, Amnesty, or Adalah primary sources.</p>
+      </div>
+      <div class="problem-card">
+        <div class="tag">Problem 03</div>
+        <h3>Even retrieval bots quietly rewrite.</h3>
+        <p>Most chatbot platforms — even "RAG-based" ones — silently summarise, merge, or paraphrase the retrieved content. The output drifts from what the editorial team wrote. Pali Answers fixes the failure mode at the architecture level: <em>no LLM in the output path.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §02 DUAL SYSTEM ===== -->
+<section class="block tinted" id="dual">
+  <style>
+    /* Dual-system specific */
+    .dual-frame {
+      position: relative;
+      padding: 8px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+    }
+    .dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+      background: var(--paper);
+    }
+    @media (max-width: 880px) {
+      .dual-grid { grid-template-columns: 1fr; }
+      .dual-divider { display: none; }
+    }
+    .dual-col {
+      padding: 40px 36px;
+      display: flex; flex-direction: column;
+    }
+    .dual-divider {
+      background: linear-gradient(to bottom, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
+    }
+    .dual-col .door {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 99px;
+      width: fit-content;
+      margin-bottom: 22px;
+    }
+    .dual-col.search .door {
+      background: rgba(206,17,38,.08);
+      color: var(--red);
+      border: 1px solid rgba(206,17,38,.22);
+    }
+    .dual-col.browse .door {
+      background: rgba(0,98,51,.08);
+      color: var(--green);
+      border: 1px solid rgba(0,98,51,.22);
+    }
+    .dual-col h3 {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 400;
+      margin: 0 0 8px;
+      line-height: 1.05;
+      letter-spacing: -.01em;
+    }
+    .dual-col .role {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-mute);
+      margin-bottom: 22px;
+    }
+    .dual-col .quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 16px;
+      color: var(--ink-soft);
+      padding: 14px 16px;
+      background: var(--paper-deep);
+      border-left: 3px solid var(--ink-soft);
+      margin: 0 0 24px;
+    }
+    .dual-col.search .quote { border-left-color: var(--red); }
+    .dual-col.browse .quote { border-left-color: var(--green); }
+    .dual-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      padding: 12px 0;
+      border-top: 1px dashed var(--rule);
+    }
+    .dual-row:last-child { border-bottom: 1px dashed var(--rule); }
+    .dual-row .k {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .dual-row .v {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .dual-row .v code {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      background: var(--paper-deep);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .dual-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 3px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .dual-tag.red { background: rgba(206,17,38,.12); color: var(--red); }
+    .dual-tag.green { background: rgba(0,98,51,.12); color: var(--green); }
+    .dual-tag.grey { background: var(--paper-deep); color: var(--ink-mute); }
+
+    .converge {
+      margin-top: 32px;
+      padding: 26px 30px;
+      background: var(--ink);
+      color: var(--paper);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .converge svg { flex-shrink: 0; }
+    .converge .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--rule);
+      margin-bottom: 6px;
+    }
+    .converge .text {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--paper-deep);
+    }
+    .converge .text em {
+      font-style: italic;
+      color: var(--paper);
+      font-weight: 400;
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">§02 — Dual system</div>
+      <div>
+        <h2>Two doors. Four routes. <em>One corpus.</em></h2>
+        <p class="section-sub">The search bot is not one path but four — a classifier routes the user's input to the correct destination. The browse catalog is its own self-contained discovery surface. All five end-states render content that is either verbatim from the corpus or a fixed canned response. Nothing is generated on the fly.</p>
+      </div>
+    </div>
+
+    <div class="dual-frame">
+      <div class="dual-grid">
+        <!-- LEFT — SEARCH BOT -->
+        <div class="dual-col search">
+          <span class="door">◆ Door A · Search bot</span>
+          <h3>The bot that classifies.</h3>
+          <div class="role">Routing only · LLM as classifier, never as writer</div>
+
+          <p class="quote">A single input field. The classifier decides what the user typed — a full question, a keyword, a knowledge query, or an unrecognised myth — and routes accordingly. The output is always verbatim corpus content or a fixed canned response.</p>
+
+          <div class="dual-row"><div class="k">Route 1 · Question</div><div class="v">Full-sentence input matching a known myth. <code>"did israel leave gaza in 2005"</code> → embed → match Q3 → render canonical answer <em>verbatim</em>, all angles, all citations, fixed template header.</div></div>
+          <div class="dual-row"><div class="k">Route 2 · Keyword</div><div class="v">Short input (1–2 words). <code>"aid"</code> → suggestion dropdown of up to 5 related myths with semantic match (so <code>"elections"</code> surfaces voting + Hamas Qs) → user taps one → verbatim answer renders.</div></div>
+          <div class="dual-row"><div class="k">Route 3 · Knowledge query <small style="opacity:.7">· PIPD Scenario A</small></div><div class="v"><code>"what is Hamas"</code>, <code>"what happened in 1948"</code> → fixed canned response: <em>"Pali Answers is not a general knowledge tool"</em> + curated external links to communicatingpalestine.org and thepipd.com.</div></div>
+          <div class="dual-row"><div class="k">Route 4 · Unknown myth <small style="opacity:.7">· PIPD Scenario B</small></div><div class="v">Assertive claim with no corpus match (<code>"Palestinians sold their land"</code>) → fixed canned response: <em>"This myth is not yet in our database"</em> + curated links to decolonizepalestine.com and thepipd.com myths page.</div></div>
+          <div class="dual-row"><div class="k">LLM usage</div><div class="v">A single ~50-token classification call. <span class="dual-tag red">cheap</span> No generation in any output path. The bytes the user sees are either the editor's bytes or a fixed template string.</div></div>
+          <div class="dual-row"><div class="k">Guarantee</div><div class="v">By architecture. The LLM is structurally incapable of inventing a claim, paraphrasing an answer, or merging two myths — because it is never asked to generate output text.</div></div>
+        </div>
+
+        <div class="dual-divider"></div>
+
+        <!-- RIGHT — BROWSE -->
+        <div class="dual-col browse">
+          <span class="door">▣ Door B · Browse by theme</span>
+          <h3>The catalog that invites.</h3>
+          <div class="role">Static content · 13 themes · accordion myths</div>
+
+          <p class="quote">"I'm preparing for a panel on Friday and I want to see all the answers about <em>international law</em>. Just show me everything."</p>
+
+          <div class="dual-row"><div class="k">Best for</div><div class="v">Users in discovery mode. Educators, organisers, journalists, students — anyone who'd rather scan a structured index than compose a query.</div></div>
+          <div class="dual-row"><div class="k">How it works</div><div class="v">Home page shows 13 theme cards. Tap one → loads the theme page with a list of myths in that theme, collapsed. Tap a myth → it expands inline to reveal Answer 1, Answer 2, Answer 3, Answer 4, with "Read more" for the rest and full citations.</div></div>
+          <div class="dual-row"><div class="k">Latency</div><div class="v">&lt; 200ms — it's a static lookup against a JSON index. <span class="dual-tag grey">CDN-cacheable</span></div></div>
+          <div class="dual-row"><div class="k">Per-query cost</div><div class="v">≈ $0.00000 of inference. Hosting bandwidth only. <span class="dual-tag green">free path</span></div></div>
+          <div class="dual-row"><div class="k">Failure mode</div><div class="v">User wants a myth that doesn't exist in the corpus. Each theme page ends with a "didn't find your myth?" link that opens the search bot — which will likely route them to Scenario B (unknown myth) with the curated external resources.</div></div>
+          <div class="dual-row"><div class="k">Guarantee</div><div class="v">By construction. The user is literally selecting from the editorial output — nothing is generated, paraphrased, or summarised on the fly. The bytes shown are the bytes approved.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Convergence statement -->
+    <div class="converge">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M8 12 L26 32 L8 52" stroke="#CE1126" stroke-width="2" fill="none"/>
+        <path d="M56 12 L38 32 L56 52" stroke="#006233" stroke-width="2" fill="none"/>
+        <circle cx="32" cy="32" r="6" fill="#F4EEE2"/>
+        <circle cx="32" cy="32" r="6" stroke="#F4EEE2" stroke-width="2" fill="none"/>
+        <line x1="26" y1="32" x2="38" y2="32" stroke="#F4EEE2" stroke-width="1" stroke-dasharray="2 2"/>
+      </svg>
+      <div>
+        <div class="label">The convergence</div>
+        <div class="text">
+          Of the five end-states (4 search routes + 1 browse route), <em>three render verbatim canonical answers</em> and <em>two render fixed canned responses with curated external links.</em> None invoke a language model to generate content. The corpus and the canned-response templates are the only sources of output text in the entire system.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §03 METHODOLOGY ===== -->
+<section class="block" id="method">
+  <style>
+    .arch-frame {
+      position: relative;
+      padding: 38px 28px 32px;
+      background: var(--paper-deep);
+      border: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .arch-label {
+      position: absolute; top: 14px; left: 20px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .arch-frame svg {
+      width: 100%;
+      height: auto;
+      max-height: 580px;
+    }
+    .arch-legend {
+      display: flex; flex-wrap: wrap;
+      gap: 26px;
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px dashed var(--rule);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .arch-legend span { display: flex; align-items: center; gap: 8px; }
+    .arch-legend i {
+      width: 14px; height: 14px;
+      display: inline-block;
+      border-radius: 3px;
+    }
+    .arch-legend .red { background: var(--red); }
+    .arch-legend .green { background: var(--green); }
+    .arch-legend .ink { background: var(--ink); }
+    .arch-legend .olive { background: var(--olive); }
+
+    .method-notes {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    @media (max-width: 800px) { .method-notes { grid-template-columns: 1fr; } }
+    .method-note {
+      padding: 22px 0;
+      border-top: 2px solid var(--ink);
+    }
+    .method-note .stepnum {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 10px;
+    }
+    .method-note h4 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+    .method-note p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+    .method-note p code {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--paper-deep);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">§03 — Methodology</div>
+      <div>
+        <h2>One classifier. <em>Five end-states.</em></h2>
+        <p class="section-sub">The LLM does exactly one thing: read the user's input and decide which of four search routes it belongs to (or detect that the user tapped a theme instead). Everything downstream is deterministic — verbatim corpus content or one of two fixed canned-response templates. No output is generated at runtime.</p>
+      </div>
+    </div>
+
+    <div class="arch-frame">
+      <span class="arch-label">Fig. 01 — End-to-end data flow</span>
+
+      <svg viewBox="0 0 1280 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Single classifier branching into four search routes plus browse lane">
+        <defs>
+          <marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#CE1126"/>
+          </marker>
+          <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#006233"/>
+          </marker>
+          <marker id="arrK" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#141312"/>
+          </marker>
+          <marker id="arrW" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#B25E00"/>
+          </marker>
+          <pattern id="grain" width="4" height="4" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r=".3" fill="#141312" opacity=".08"/>
+          </pattern>
+        </defs>
+
+        <!-- Top labels -->
+        <text x="380" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#CE1126" font-weight="600" letter-spacing="1.5">DOOR A · SEARCH BOT</text>
+        <text x="1080" y="30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#006233" font-weight="600" letter-spacing="1.5">DOOR B · BROWSE BY THEME</text>
+
+        <!-- Divider -->
+        <line x1="800" y1="14" x2="800" y2="660" stroke="#C9BEA8" stroke-width=".7" stroke-dasharray="3 4"/>
+
+        <!-- ===== DOOR A — single input ===== -->
+        <g>
+          <rect x="305" y="50" width="220" height="58" rx="2" fill="#F4EEE2" stroke="#CE1126" stroke-width="1.5"/>
+          <text x="415" y="72" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" font-weight="600" fill="#141312">User input</text>
+          <text x="415" y="90" text-anchor="middle" font-family="Fraunces, serif" font-size="11" font-style="italic" fill="#5C544A">single field · any phrasing</text>
+        </g>
+        <line x1="415" y1="108" x2="415" y2="135" stroke="#CE1126" stroke-width="1.5" marker-end="url(#arrR)"/>
+
+        <!-- ===== Classifier — THE ONLY LLM STEP ===== -->
+        <g>
+          <rect x="265" y="140" width="300" height="74" rx="2" fill="#141312" stroke="#CE1126" stroke-width="2"/>
+          <text x="415" y="162" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1.2" fill="#CE1126">◆ THE ONLY LLM STEP ◆</text>
+          <text x="415" y="183" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="14" font-weight="600" fill="#F4EEE2">Classifier</text>
+          <text x="415" y="201" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#C9BEA8">Haiku 4.5 · ~50 output tokens · ~$0.0001</text>
+        </g>
+
+        <!-- Fan-out spine -->
+        <line x1="415" y1="214" x2="415" y2="244" stroke="#CE1126" stroke-width="1.5"/>
+        <line x1="105" y1="244" x2="725" y2="244" stroke="#CE1126" stroke-width="1.5"/>
+        <line x1="105" y1="244" x2="105" y2="265" stroke="#CE1126" stroke-width="1.5" marker-end="url(#arrR)"/>
+        <line x1="310" y1="244" x2="310" y2="265" stroke="#CE1126" stroke-width="1.5" marker-end="url(#arrR)"/>
+        <line x1="520" y1="244" x2="520" y2="265" stroke="#B25E00" stroke-width="1.5" marker-end="url(#arrW)"/>
+        <line x1="725" y1="244" x2="725" y2="265" stroke="#B25E00" stroke-width="1.5" marker-end="url(#arrW)"/>
+
+        <!-- Route labels -->
+        <text x="105" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#CE1126" font-weight="600">ROUTE 1</text>
+        <text x="310" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#CE1126" font-weight="600">ROUTE 2</text>
+        <text x="520" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#B25E00" font-weight="600">ROUTE 3</text>
+        <text x="725" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#B25E00" font-weight="600">ROUTE 4</text>
+
+        <!-- ===== ROUTE 1 — QUESTION ===== -->
+        <g>
+          <rect x="25" y="270" width="160" height="52" rx="2" fill="#FFFFFF" stroke="#CE1126" stroke-width="1"/>
+          <text x="105" y="289" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12" font-weight="600" fill="#141312">QUESTION</text>
+          <text x="105" y="305" text-anchor="middle" font-family="Fraunces, serif" font-size="10" font-style="italic" fill="#5C544A">"did Israel leave Gaza 2005"</text>
+        </g>
+        <line x1="105" y1="322" x2="105" y2="343" stroke="#CE1126" stroke-width="1" marker-end="url(#arrR)"/>
+        <g>
+          <rect x="25" y="346" width="160" height="40" rx="2" fill="#F4EEE2" stroke="#CE1126" stroke-width="1"/>
+          <text x="105" y="362" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="500" fill="#141312">embed</text>
+          <text x="105" y="377" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5C544A">1536-dim · cached</text>
+        </g>
+        <line x1="105" y1="386" x2="105" y2="403" stroke="#CE1126" stroke-width="1" marker-end="url(#arrR)"/>
+        <g>
+          <rect x="25" y="406" width="160" height="40" rx="2" fill="#F4EEE2" stroke="#CE1126" stroke-width="1"/>
+          <text x="105" y="422" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="500" fill="#141312">match top-1</text>
+          <text x="105" y="437" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5C544A">cosine · pgvector</text>
+        </g>
+
+        <!-- ===== ROUTE 2 — KEYWORD ===== -->
+        <g>
+          <rect x="230" y="270" width="160" height="52" rx="2" fill="#FFFFFF" stroke="#CE1126" stroke-width="1"/>
+          <text x="310" y="289" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12" font-weight="600" fill="#141312">KEYWORD</text>
+          <text x="310" y="305" text-anchor="middle" font-family="Fraunces, serif" font-size="10" font-style="italic" fill="#5C544A">"aid" · "elections"</text>
+        </g>
+        <line x1="310" y1="322" x2="310" y2="343" stroke="#CE1126" stroke-width="1" marker-end="url(#arrR)"/>
+        <g>
+          <rect x="230" y="346" width="160" height="40" rx="2" fill="#F4EEE2" stroke="#CE1126" stroke-width="1"/>
+          <text x="310" y="362" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="500" fill="#141312">suggest dropdown</text>
+          <text x="310" y="377" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5C544A">semantic match · top 5</text>
+        </g>
+        <line x1="310" y1="386" x2="310" y2="403" stroke="#CE1126" stroke-width="1" marker-end="url(#arrR)"/>
+        <g>
+          <rect x="230" y="406" width="160" height="40" rx="2" fill="#F4EEE2" stroke="#CE1126" stroke-width="1"/>
+          <text x="310" y="422" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" font-weight="500" fill="#141312">user taps myth</text>
+          <text x="310" y="437" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5C544A">deterministic from here</text>
+        </g>
+
+        <!-- ===== ROUTE 3 — KNOWLEDGE QUERY ===== -->
+        <g>
+          <rect x="440" y="270" width="160" height="52" rx="2" fill="#FFFFFF" stroke="#B25E00" stroke-width="1"/>
+          <text x="520" y="289" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12" font-weight="600" fill="#141312">KNOWLEDGE</text>
+          <text x="520" y="305" text-anchor="middle" font-family="Fraunces, serif" font-size="10" font-style="italic" fill="#5C544A">"what is Hamas"</text>
+        </g>
+        <line x1="520" y1="322" x2="520" y2="403" stroke="#B25E00" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arrW)"/>
+        <text x="538" y="370" font-family="JetBrains Mono, monospace" font-size="9" fill="#B25E00" font-style="italic">(no retrieval)</text>
+
+        <!-- ===== ROUTE 4 — UNKNOWN MYTH ===== -->
+        <g>
+          <rect x="645" y="270" width="160" height="52" rx="2" fill="#FFFFFF" stroke="#B25E00" stroke-width="1"/>
+          <text x="725" y="289" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12" font-weight="600" fill="#141312">UNKNOWN MYTH</text>
+          <text x="725" y="305" text-anchor="middle" font-family="Fraunces, serif" font-size="10" font-style="italic" fill="#5C544A">"Palestinians sold land"</text>
+        </g>
+        <line x1="725" y1="322" x2="725" y2="403" stroke="#B25E00" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#arrW)"/>
+        <text x="743" y="370" font-family="JetBrains Mono, monospace" font-size="9" fill="#B25E00" font-style="italic">(no retrieval)</text>
+
+        <!-- ===== DOOR B LANE (Browse) ===== -->
+        <g>
+          <rect x="970" y="50" width="220" height="58" rx="2" fill="#F4EEE2" stroke="#006233" stroke-width="1.5"/>
+          <text x="1080" y="72" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" font-weight="600" fill="#141312">User taps theme card</text>
+          <text x="1080" y="90" text-anchor="middle" font-family="Fraunces, serif" font-size="11" font-style="italic" fill="#5C544A">13 cards · home page</text>
+        </g>
+        <line x1="1080" y1="108" x2="1080" y2="135" stroke="#006233" stroke-width="1.5" marker-end="url(#arrG)"/>
+
+        <g>
+          <rect x="970" y="140" width="220" height="50" rx="2" fill="#FFFFFF" stroke="#006233" stroke-width="1"/>
+          <text x="1080" y="160" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" font-weight="500" fill="#141312">Theme page</text>
+          <text x="1080" y="178" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#5C544A">static JSON · CDN-cached</text>
+        </g>
+        <line x1="1080" y1="190" x2="1080" y2="217" stroke="#006233" stroke-width="1.5" marker-end="url(#arrG)"/>
+
+        <g>
+          <rect x="970" y="222" width="220" height="50" rx="2" fill="#FFFFFF" stroke="#006233" stroke-width="1"/>
+          <text x="1080" y="242" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" font-weight="500" fill="#141312">Myth list · collapsed</text>
+          <text x="1080" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#5C544A">accordion · titles only</text>
+        </g>
+        <line x1="1080" y1="272" x2="1080" y2="299" stroke="#006233" stroke-width="1.5" marker-end="url(#arrG)"/>
+
+        <g>
+          <rect x="970" y="304" width="220" height="50" rx="2" fill="#F4EEE2" stroke="#006233" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text x="1080" y="324" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" font-weight="500" fill="#141312">User taps myth</text>
+          <text x="1080" y="342" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#5C544A">accordion expand inline</text>
+        </g>
+
+        <!-- ===== SHARED CORPUS BLOCK ===== -->
+        <g>
+          <rect x="25" y="470" width="540" height="100" rx="2" fill="#141312"/>
+          <rect x="25" y="470" width="540" height="100" rx="2" fill="url(#grain)"/>
+          <text x="295" y="494" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#C9BEA8">SHARED CORPUS — SOURCE OF TRUTH</text>
+          <line x1="65" y1="504" x2="525" y2="504" stroke="#5C544A" stroke-width=".5"/>
+          <text x="295" y="528" text-anchor="middle" font-family="Fraunces, serif" font-size="17" font-style="italic" fill="#F4EEE2">canonical_answers.jsonl</text>
+          <text x="295" y="548" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="11" fill="#ECE3D2">72 myths · 13 themes · 300+ answer angles · 600+ citations</text>
+          <text x="295" y="562" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#C9BEA8">human-edited · version-controlled · last_reviewed per row</text>
+        </g>
+        <line x1="105" y1="446" x2="170" y2="468" stroke="#141312" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arrK)"/>
+        <line x1="310" y1="446" x2="295" y2="468" stroke="#141312" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arrK)"/>
+
+        <!-- ===== CANNED TEMPLATES BLOCK ===== -->
+        <g>
+          <rect x="585" y="470" width="220" height="100" rx="2" fill="#2A2725"/>
+          <rect x="585" y="470" width="220" height="100" rx="2" fill="url(#grain)"/>
+          <text x="695" y="494" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#C9BEA8">CANNED TEMPLATES</text>
+          <line x1="615" y1="504" x2="775" y2="504" stroke="#5C544A" stroke-width=".5"/>
+          <text x="695" y="525" text-anchor="middle" font-family="Fraunces, serif" font-size="13" font-style="italic" fill="#F4EEE2">2 fixed responses</text>
+          <text x="695" y="542" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="10" fill="#ECE3D2">A · knowledge query</text>
+          <text x="695" y="557" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="10" fill="#ECE3D2">B · unknown myth</text>
+        </g>
+        <line x1="520" y1="446" x2="640" y2="468" stroke="#B25E00" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arrW)"/>
+        <line x1="725" y1="446" x2="720" y2="468" stroke="#B25E00" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arrW)"/>
+
+        <!-- Browse → corpus arrow (curved) -->
+        <path d="M 1080 360 Q 1080 430 950 510" stroke="#006233" stroke-width="1.5" stroke-dasharray="3 2" fill="none" marker-end="url(#arrG)"/>
+        <text x="1115" y="445" font-family="JetBrains Mono, monospace" font-size="9" fill="#006233" font-style="italic">verbatim fetch</text>
+
+        <!-- ===== OUTPUT ROW ===== -->
+        <line x1="295" y1="570" x2="105" y2="610" stroke="#141312" stroke-width="1" marker-end="url(#arrK)"/>
+        <line x1="295" y1="570" x2="310" y2="610" stroke="#141312" stroke-width="1" marker-end="url(#arrK)"/>
+        <line x1="650" y1="570" x2="520" y2="610" stroke="#141312" stroke-width="1" marker-end="url(#arrK)"/>
+        <line x1="740" y1="570" x2="725" y2="610" stroke="#141312" stroke-width="1" marker-end="url(#arrK)"/>
+
+        <g>
+          <rect x="25" y="613" width="160" height="68" rx="2" fill="#F4EEE2" stroke="#CE1126" stroke-width="2"/>
+          <text x="105" y="633" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12" font-weight="600" fill="#141312">Verbatim answer</text>
+          <text x="105" y="649" text-anchor="middle" font-family="Fraunces, serif" font-size="10" font-style="italic" fill="#5C544A">+ fixed template header</text>
+          <text x="105" y="666" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5C544A">4 angles + read more</text>
+        </g>
+        <g>
+          <rect x="230" y="613" width="160" height="68" rx="2" fill="#F4EEE2" stroke="#CE1126" stroke-width="2"/>
+          <text x="310" y="633" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12" font-weight="600" fill="#141312">Verbatim answer</text>
+          <text x="310" y="649" text-anchor="middle" font-family="Fraunces, serif" font-size="10" font-style="italic" fill="#5C544A">+ fixed template header</text>
+          <text x="310" y="666" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5C544A">same as Route 1</text>
+        </g>
+        <g>
+          <rect x="440" y="613" width="160" height="68" rx="2" fill="#F4EEE2" stroke="#B25E00" stroke-width="2"/>
+          <text x="520" y="633" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12" font-weight="600" fill="#141312">Canned A</text>
+          <text x="520" y="649" text-anchor="middle" font-family="Fraunces, serif" font-size="10" font-style="italic" fill="#5C544A">"not a general knowledge tool"</text>
+          <text x="520" y="666" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5C544A">+ external links</text>
+        </g>
+        <g>
+          <rect x="645" y="613" width="160" height="68" rx="2" fill="#F4EEE2" stroke="#B25E00" stroke-width="2"/>
+          <text x="725" y="633" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12" font-weight="600" fill="#141312">Canned B</text>
+          <text x="725" y="649" text-anchor="middle" font-family="Fraunces, serif" font-size="10" font-style="italic" fill="#5C544A">"not yet in our database"</text>
+          <text x="725" y="666" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5C544A">+ external links</text>
+        </g>
+        <g>
+          <rect x="970" y="613" width="220" height="68" rx="2" fill="#F4EEE2" stroke="#006233" stroke-width="2"/>
+          <text x="1080" y="633" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="12" font-weight="600" fill="#141312">Verbatim accordion</text>
+          <text x="1080" y="649" text-anchor="middle" font-family="Fraunces, serif" font-size="10" font-style="italic" fill="#5C544A">myth expands inline</text>
+          <text x="1080" y="666" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5C544A">4 angles + read more</text>
+        </g>
+
+        <!-- Note line at bottom -->
+        <text x="640" y="720" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#5C544A" font-style="italic">All five end-states render either verbatim corpus content or a fixed canned template. No LLM in any output path.</text>
+        <text x="640" y="740" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#5C544A">Total LLM cost per search session ≈ $0.0001 · browse session = $0</text>
+      </svg>
+
+      <div class="arch-legend">
+        <span><i class="red"></i> Search routes 1 &amp; 2 (corpus)</span>
+        <span><i style="background:#B25E00"></i> Search routes 3 &amp; 4 (canned)</span>
+        <span><i class="green"></i> Browse lane</span>
+        <span><i class="ink"></i> Source-of-truth blocks</span>
+      </div>
+    </div>
+
+    <div class="method-notes">
+      <div class="method-note">
+        <div class="stepnum">Note 01 — The LLM is a classifier, not a writer</div>
+        <h4>One model call. ~50 output tokens.</h4>
+        <p>The classifier receives the user's input and outputs one of four labels: <code>QUESTION</code>, <code>KEYWORD</code>, <code>KNOWLEDGE_QUERY</code>, or <code>UNKNOWN_MYTH</code>. It is never asked to produce, summarise, or rewrite any answer content. Everything downstream is deterministic Python/JS code with no model in the loop.</p>
+      </div>
+      <div class="method-note">
+        <div class="stepnum">Note 02 — Verbatim with a fixed template header</div>
+        <h4>The user sees exactly what the editor wrote.</h4>
+        <p>For Routes 1 and 2, the matched canonical answer renders verbatim, preceded by a fixed template: <em>"Answer for: &lt;canonical Q title&gt;"</em>. Four answer angles appear by default in editorial order; a "see more" control reveals the rest. Citations and Read More sections are preserved byte-for-byte from the corpus.</p>
+      </div>
+      <div class="method-note">
+        <div class="stepnum">Note 03 — Two canned responses, never confused</div>
+        <h4>Knowledge ≠ unknown myth.</h4>
+        <p>Route 3 fires when the input is an interrogative knowledge query ("what is Hamas", "what happened in 1948") — sends users to <code>communicatingpalestine.org</code> external resources. Route 4 fires when the input is an assertive claim with no corpus match ("Palestinians sold their land") — sends users to <code>decolonizepalestine.com</code> myths page. The classifier distinguishes interrogative + topical from declarative + accusatory.</p>
+      </div>
+      <div class="method-note">
+        <div class="stepnum">Note 04 — Why the theme browser exists at all</div>
+        <h4>Discovery is not a search problem.</h4>
+        <p>If a user doesn't know that a particular myth exists, they can't search for it. The theme browser is the answer to that: 13 cards on the home page, each opening to an accordion of myths within that theme. Tapping a myth expands it inline to reveal Answer 1, Answer 2, Answer 3, Answer 4, with Read more for the rest. No LLM at any point in this lane.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §04 THEME HIERARCHY ===== -->
+<section class="block tinted" id="themes">
+  <style>
+    .ia-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+    @media (max-width: 800px) { .ia-intro { grid-template-columns: 1fr; gap: 24px; } }
+    .ia-intro p {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+    .ia-intro p + p { margin-top: 14px; }
+
+    /* ——— Theme cards grid (home page mock) ——— */
+    .theme-grid-frame {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 38px 32px;
+      position: relative;
+    }
+    .theme-grid-frame::before {
+      content: "▦  Home page mock — 13 theme cards";
+      position: absolute; top: -10px; left: 22px;
+      background: var(--paper-deep);
+      padding: 2px 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      border: 1px solid var(--rule);
+    }
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 6px;
+    }
+    @media (max-width: 1000px) { .theme-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px)  { .theme-grid { grid-template-columns: repeat(2, 1fr); } }
+    .theme-card {
+      background: var(--paper);
+      border: 1.5px solid var(--rule);
+      padding: 20px 18px 16px;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: all .18s ease;
+      display: flex; flex-direction: column;
+      gap: 6px;
+      min-height: 130px;
+      position: relative;
+      overflow: hidden;
+    }
+    .theme-card::before {
+      content: "";
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--ink);
+      transform: translateY(-3px);
+      transition: transform .2s ease;
+    }
+    .theme-card:hover {
+      border-color: var(--ink);
+      transform: translateY(-2px);
+    }
+    .theme-card:hover::before { transform: translateY(0); }
+    .theme-card.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--paper);
+    }
+    .theme-card.active::before {
+      background: var(--green);
+      transform: translateY(0);
+    }
+    .theme-card .num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .theme-card.active .num { color: var(--rule); }
+    .theme-card h4 {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 500;
+      margin: 0;
+      line-height: 1.15;
+      letter-spacing: -.005em;
+      flex-grow: 1;
+    }
+    .theme-card .count {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-mute);
+      margin-top: 6px;
+    }
+    .theme-card.active .count { color: var(--rule); }
+    .theme-card.active::after {
+      content: "";
+      position: absolute;
+      bottom: -8px; left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 14px; height: 14px;
+      background: var(--ink);
+    }
+
+    /* ——— Theme detail (accordion) ——— */
+    .theme-detail {
+      margin-top: 32px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 30px 32px 26px;
+      position: relative;
+    }
+    .theme-detail::before {
+      content: "▤  Theme page mock — accordion of myths";
+      position: absolute; top: -10px; left: 22px;
+      background: var(--paper-deep);
+      padding: 2px 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      border: 1px solid var(--rule);
+    }
+    .theme-back {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-mute);
+      letter-spacing: .04em;
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+    .theme-detail-head {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--rule);
+      flex-wrap: wrap;
+    }
+    .theme-detail-head h3 {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 400;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .theme-detail-head h3 em {
+      font-style: italic;
+      color: var(--green);
+    }
+    .theme-detail-head .meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-mute);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .theme-detail .desc {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin: 0 0 22px;
+      font-style: italic;
+    }
+
+    /* Accordion myth list */
+    .myth-acc { list-style: none; padding: 0; margin: 0; }
+    .myth-acc li {
+      border-top: 1px solid var(--rule-soft);
+    }
+    .myth-acc li:last-child { border-bottom: 1px solid var(--rule-soft); }
+    .myth-row {
+      display: grid;
+      grid-template-columns: 50px 1fr 24px;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 4px;
+      cursor: pointer;
+      transition: background .15s ease;
+    }
+    .myth-row:hover { background: var(--paper-deep); }
+    .myth-row .qn {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-mute);
+      letter-spacing: .04em;
+    }
+    .myth-row .qt {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+    .myth-row .chev {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--ink-mute);
+      transition: transform .2s ease;
+      text-align: center;
+    }
+    .myth-acc li.open .myth-row .chev { transform: rotate(180deg); color: var(--green); }
+    .myth-acc li.open .myth-row { background: var(--paper-deep); }
+    .myth-body {
+      display: none;
+      padding: 6px 4px 22px 64px;
+      background: var(--paper-deep);
+      font-family: var(--serif);
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+    .myth-acc li.open .myth-body { display: block; }
+    .myth-body .angle {
+      padding: 8px 0;
+      border-top: 1px dashed var(--rule);
+    }
+    .myth-body .angle:first-child { border-top: none; }
+    .myth-body .angle .alabel {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .myth-body .readmore {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .04em;
+      color: var(--red);
+    }
+
+    .theme-detail-foot {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--rule);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-mute);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .theme-detail-foot a {
+      color: var(--red);
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+    }
+
+    /* Suggested prompts strip */
+    .prompts {
+      margin-top: 36px;
+      padding: 26px 30px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--red);
+    }
+    .prompts .lbl {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .prompts .head {
+      font-family: var(--serif);
+      font-size: 20px;
+      margin: 0 0 18px;
+      color: var(--ink);
+    }
+    .prompts .row {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .prompts button {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      background: var(--paper-deep);
+      border: 1px solid var(--rule);
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--ink-soft);
+      transition: all .15s ease;
+    }
+    .prompts button:hover {
+      border-color: var(--red);
+      color: var(--red);
+      background: var(--paper);
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">§04 — Theme hierarchy</div>
+      <div>
+        <h2>What the catalog <em>looks like.</em></h2>
+        <p class="section-sub">13 themes on the home page as clickable cards. Tap one to open its theme page, where the myths within are listed as an accordion. Tap a myth to expand it inline and read the first four answer angles; "Read more" expands the rest. No language model is invoked anywhere in this lane.</p>
+      </div>
+    </div>
+
+    <div class="ia-intro">
+      <p>The 13 themes are drawn from the corpus's own editorial categories, with two adjustments: a few topical themes are kept distinct because they are how users actually arrive (Aid &amp; Famine, Antisemitism Accusations), and a few categories are paired where one is too small to stand alone (Apartheid + Democracy, Refugees + Right of Return). The result is a taxonomy close to how the corpus already organises itself, not an editorial overlay.</p>
+      <p>A single myth can sit in more than one theme. The interactive mock below behaves the way the production app will: tap a card to drill in, tap a myth to read it.</p>
+    </div>
+
+    <!-- Theme cards (home page) -->
+    <div class="theme-grid-frame">
+      <div class="theme-grid" role="tablist" id="themeGrid">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <!-- Theme detail (accordion of myths) -->
+    <div class="theme-detail" id="themeDetail">
+      <!-- filled by JS -->
+    </div>
+
+    <!-- Search-bot suggested prompts strip -->
+    <div class="prompts">
+      <div class="lbl">Search bot · suggested prompts on landing screen</div>
+      <h4 class="head">Buttons above the empty input field for users who don't want to type.</h4>
+      <div class="row">
+        <button>Did Israel really leave Gaza in 2005?</button>
+        <button>Is "from the river to the sea" antisemitic?</button>
+        <button>Is the situation just "too complicated"?</button>
+        <button>Do you condemn Hamas?</button>
+        <button>Has Israel committed war crimes?</button>
+        <button>What started on October 7?</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== Theme data — 13 themes drawn from the actual corpus categories =====
+    const themes = [
+      { id:"genocide", title:"Genocide", em:" — live myths.",
+        desc:"The largest theme in the corpus. Claims used to justify, minimise, or relativise the ongoing assault on Gaza — and the legal framework that names what's happening.",
+        qs: [[14,"Civilian casualties are unfortunate but unavoidable collateral damage."],
+             [15,"Hamas uses civilians as human shields."],
+             [24,"Israel does not intentionally target civilians."],
+             [37,"The Israeli army is the most moral army in the world."],
+             [43,"Your life in Gaza was destroyed? You have Hamas to thank for that."],
+             [45,"How can it be ethnic cleansing if the population is growing?"],
+             [47,"There's nothing wrong with disseminating videos of military-aged men in Gaza."],
+             [52,"Israel does not deliberately target journalists."],
+             [55,"South Africa didn't follow proper procedures at the ICJ."],
+             [56,"Statements by Israeli officials weren't really genocidal."],
+             [60,"Hamas beheaded 40 babies on October 7."],
+             [61,"Netanyahu's reference to Amalek was taken out of context."],
+             [67,"Israel regularly drops leaflets warning civilians."],
+             [74,"Israel is not guilty of war crimes."]]
+      },
+      { id:"aid", title:"Aid & Famine", em:" — the man-made part.",
+        desc:"The deliberate engineering of hunger as a method of warfare — and the rhetoric used to shift blame.",
+        qs: [[41,"Why should Israel supply an enemy population with water, food, and medicine?"],
+             [71,"Israel is not restricting humanitarian aid into Gaza."],
+             [72,"Hamas steals the aid — that's why Palestinians are starving."]]
+      },
+      { id:"terror", title:"Terrorism & Resistance", em:" — labels and law.",
+        desc:"The right to resist colonisation, the framing of resistance as terrorism, and the loaded comparisons (Hamas = ISIS, rocket parity, etc.).",
+        qs: [[1,"Palestinians voted for Hamas, so they're responsible."],
+             [2,"Hamas is no different from ISIS."],
+             [5,"Palestinians have always called for Israel's destruction."],
+             [13,"Hamas has fired thousands of rockets at Israeli cities."],
+             [32,"Israel has no choice but to use force to free hostages."],
+             [35,"Once Israel wipes out Hamas, there can be peace."],
+             [51,"Palestinians are incapable of ethical resistance."],
+             [54,"Hamas's charter calls for killing all Jews."],
+             [63,"Do you condemn Hamas?"]]
+      },
+      { id:"apartheid", title:"Apartheid & Democracy", em:" — the regime question.",
+        desc:"Israel's legal architecture as a question of equality, citizenship, and democracy — versus the claim that it's the region's only democracy.",
+        qs: [[4,"Palestinians can't have equal rights — it would destroy Israel demographically."],
+             [10,"Israel is the only democracy in the Middle East."],
+             [11,"Palestinians in Israel live better than in any Arab country."],
+             [12,"Palestinians in Israel can vote."],
+             [28,"There is no apartheid in Israel."],
+             [31,"If 20% of Israel's population are Arab citizens, how can it be ethnic cleansing?"],
+             [38,"Movement of Palestinians must be restricted for security."],
+             [75,"The situation of Palestinians in Israel is exaggerated."]]
+      },
+      { id:"occupation", title:"Occupation & Blockade", em:" — effective control.",
+        desc:"What occupation means under international law — and why \"withdrawal\" without sovereignty isn't withdrawal at all.",
+        qs: [[3,"Israel withdrew from Gaza in 2005 and no longer occupies it."],
+             [18,"If Gaza has been under siege since 2007, why doesn't Hamas run out of fuel?"],
+             [23,"Israel has the right to defend itself."],
+             [40,"Israel's wars are necessary for its very existence."],
+             [65,"Gaza could have been like Singapore if not for Hamas."]]
+      },
+      { id:"history", title:"History & the Nakba", em:" — what 1948 was.",
+        desc:"Plan Dalet, partition, depopulation, and the historiography that's been deployed to deny it.",
+        qs: [[19,"There was no Nakba in 1948 — it was Arabs who attacked Israel."],
+             [20,"If Palestinians deserved a state, why didn't Jordan create one before 1967?"],
+             [22,"The conflict is a religious war going back thousands of years."],
+             [25,"It all started on October 7."],
+             [26,"The Israeli-Palestinian conflict is too complicated."],
+             [30,"Haj Amin al-Husseini collaborated with the Nazis."],
+             [34,"Palestinians rejected a state in 1948."],
+             [44,"The Arabs attacked Israel and lost — stop crying over the Nakba."]]
+      },
+      { id:"colonial", title:"Settler Colonialism", em:" — structure, not conflict.",
+        desc:"Zionism as a settler-colonial project, the indigeneity argument, and the rhetorical scaffolding of the Jewish-state-as-promised-land claim.",
+        qs: [[27,"Jews have a biblical and historical right to the land."],
+             [39,"Jews are indigenous, so they can't be colonisers."],
+             [50,"There was never a Palestinian people or nation before Israel."],
+             [62,"Israel keeps Jews safe."],
+             [70,"Netanyahu is the problem — once he's gone, things will improve."]]
+      },
+      { id:"law", title:"International Law", em:" — ICJ · ICC · IHL.",
+        desc:"Genocide Convention, occupation law, ICJ provisional measures, ICC arrest warrants, collective punishment — the legal framework most consistently elided in public discourse.",
+        qs: [[14,"Civilian casualties are unfortunate but unavoidable collateral damage."],
+             [23,"Israel has the right to defend itself."],
+             [55,"South Africa didn't follow proper legal procedures at the ICJ."],
+             [57,"Israel has its own judicial system — let it hold itself accountable."],
+             [67,"Israel regularly drops leaflets warning civilians."],
+             [68,"Collective punishment is justified against enemy combatants."],
+             [74,"Israel is not guilty of war crimes."]]
+      },
+      { id:"refugees", title:"Refugees & Right of Return", em:" — six million people.",
+        desc:"The UNRWA mandate, the right of return under international law, and the recurring \"why don't they just go elsewhere\" argument.",
+        qs: [[21,"Why don't Palestinians just move to the other 21 Arab countries?"],
+             [49,"It was the Arabs who expelled Arab Jews after 1948."],
+             [64,"UNRWA is infiltrated by Hamas and should be defunded."],
+             [66,"Why don't Palestinian refugees just assimilate?"]]
+      },
+      { id:"antisem", title:"Antisemitism Accusations", em:" — the weaponised charge.",
+        desc:"The conflation of anti-Zionism with antisemitism, the IHRA debate, and the slogans (\"from the river to the sea,\" BDS) most often labelled antisemitic.",
+        qs: [[8,"\"From the river to the sea\" is antisemitic."],
+             [29,"Anti-Zionism is antisemitism."],
+             [42,"Criticism of Israel is antisemitic."],
+             [46,"Pro-Palestinian protest slogans have been antisemitic."],
+             [54,"Hamas's charter calls for killing all Jews."],
+             [73,"BDS is antisemitic and harms Palestinians."]]
+      },
+      { id:"victim", title:"Victim-Blaming", em:" — they brought it on themselves.",
+        desc:"The structural move that holds Palestinians responsible for what is done to them — by Hamas, by their own \"culture,\" by historical choices.",
+        qs: [[1,"Palestinians voted for Hamas, so they're responsible."],
+             [15,"Hamas uses civilians as human shields."],
+             [30,"Haj Amin al-Husseini collaborated with the Nazis."],
+             [34,"Palestinians rejected a state in 1948."],
+             [43,"Your life in Gaza was destroyed? You have Hamas to thank."],
+             [44,"The Arabs attacked Israel and lost."],
+             [65,"Gaza could have been like Singapore if not for Hamas."],
+             [72,"Hamas steals the aid — that's why Palestinians are starving."]]
+      },
+      { id:"dehum", title:"Dehumanisation", em:" — Amalek and after.",
+        desc:"The rhetoric — religious, racial, animalising — that makes the killing thinkable in the first place.",
+        qs: [[2,"Hamas is no different from ISIS."],
+             [9,"Palestinians want to throw Jews into the sea."],
+             [13,"Hamas has fired thousands of rockets at Israeli cities."],
+             [16,"Palestinians don't respect human rights."],
+             [17,"Palestinians criminalise LGBTQIA+ people."],
+             [36,"Palestinians believe it's a commandment to kill Jews."],
+             [40,"Israel's wars are necessary for its existence."],
+             [47,"There's nothing wrong with disseminating videos of military-aged men."],
+             [51,"Palestinians are incapable of ethical resistance."],
+             [60,"Hamas beheaded 40 babies on October 7."]]
+      },
+      { id:"denial", title:"Historical Denial", em:" — the umbrella.",
+        desc:"The structural pattern across many myths: erasing or rewriting historical facts. This theme aggregates myths that lean particularly hard on rewriting the record.",
+        qs: [[2,"Hamas is no different from ISIS."],
+             [3,"Israel withdrew from Gaza in 2005 and no longer occupies it."],
+             [5,"Palestinians have always called for Israel's destruction."],
+             [19,"There was no Nakba in 1948."],
+             [22,"The conflict is a religious war going back thousands of years."],
+             [25,"It all started on October 7."],
+             [26,"The Israeli-Palestinian conflict is too complicated."],
+             [28,"There is no apartheid in Israel."],
+             [50,"There was never a Palestinian people before Israel."],
+             [56,"Statements by Israeli officials weren't really genocidal."]]
+      }
+    ];
+
+    // ===== Sample answer angles (only filled for one myth, used as a demo expansion) =====
+    const sampleAnswers = {
+      3: { // Q3 — Israel withdrew from Gaza in 2005
+        title: "Israel withdrew from Gaza in 2005 and no longer occupies it.",
+        angles: [
+          { label: "Angle 1 · Legal", text: "Under international law, occupation is determined by effective control, not by the physical presence of soldiers inside a territory. The 2005 withdrawal moved Israeli forces out of Gaza but kept Israel in control of Gaza's borders, airspace, territorial waters, population registry, electromagnetic spectrum, and the flow of food, fuel, and medicine. The ICRC, the UN, and the ICJ have consistently held that Gaza remains occupied territory." },
+          { label: "Angle 2 · Analogical", text: "A jailer does not cease to be a jailer by stepping outside the cell. Apartheid South Africa created Bantustans — nominally \"self-governing\" territories — while controlling their borders, resources, and populations. The international community rejected those fictions unanimously. Gaza is not different. Formal \"withdrawal\" while maintaining total control is not freedom. It is a rebranding of occupation." },
+          { label: "Angle 3 · Structural", text: "Israel retained the right to enter Gaza militarily, to assassinate Palestinians, to imprison Palestinians without trial, and to bombard the territory at will. It controls the population registry — meaning Israel decides who is and isn't a Palestinian — and the trade routes. Effective control was never relinquished; only the cost of administration was outsourced." },
+          { label: "Angle 4 · Historical", text: "The 2005 \"disengagement\" was not a peace gesture. It was framed by Ariel Sharon's advisor Dov Weisglass as \"formaldehyde\" for the peace process — a freeze, not a thaw. The settlements removed from Gaza were a fraction of the West Bank settlement project, which expanded rapidly in the same period." }
+        ],
+        readmore: "Read More · 14 cited sources including the ICJ Advisory Opinion (2024), ICRC IHL Database, B'Tselem, Al-Haq, Atlantic Council, and UN OCHA."
+      }
+    };
+
+    function renderThemeGrid() {
+      const html = themes.map((t, i) => `
+        <button class="theme-card ${i === 0 ? 'active' : ''}" data-theme="${t.id}" role="tab">
+          <span class="num">Theme ${String(i+1).padStart(2,'0')}</span>
+          <h4>${t.title}</h4>
+          <span class="count">${t.qs.length} myth${t.qs.length === 1 ? '' : 's'}</span>
+        </button>
+      `).join('');
+      document.getElementById('themeGrid').innerHTML = html;
+    }
+
+    function renderThemeDetail(id) {
+      const t = themes.find(x => x.id === id);
+      if (!t) return;
+      const idx = themes.findIndex(x => x.id === id);
+      const html = `
+        <div class="theme-back">← Back to all themes</div>
+        <div class="theme-detail-head">
+          <h3>${t.title}<em>${t.em}</em></h3>
+          <div class="meta">Theme ${String(idx+1).padStart(2,'0')} · ${t.qs.length} myths</div>
+        </div>
+        <p class="desc">${t.desc}</p>
+        <ul class="myth-acc" id="mythAcc">
+          ${t.qs.map(([n, q]) => `
+            <li data-q="${n}">
+              <div class="myth-row">
+                <span class="qn">Q${String(n).padStart(2,'0')}</span>
+                <span class="qt">${q}</span>
+                <span class="chev">▾</span>
+              </div>
+              <div class="myth-body">
+                ${sampleAnswers[n] ? renderAngles(sampleAnswers[n]) : `
+                  <div class="angle">
+                    <div class="alabel">Verbatim canonical answer</div>
+                    <em>In the production app, this expands inline to show Answer 1, Answer 2, Answer 3, Answer 4 from the corpus, with a "Read more" link for additional angles and source citations. No LLM is invoked.</em>
+                  </div>
+                `}
+              </div>
+            </li>
+          `).join('')}
+        </ul>
+        <div class="theme-detail-foot">
+          <span>${t.qs.length} myths · all served verbatim from canonical_answers.jsonl</span>
+          <span>Didn't find your myth? <a href="#sample">→ ask the search bot</a></span>
+        </div>
+      `;
+      document.getElementById('themeDetail').innerHTML = html;
+
+      // Attach accordion handlers
+      document.querySelectorAll('#mythAcc li').forEach(li => {
+        li.querySelector('.myth-row').addEventListener('click', () => {
+          li.classList.toggle('open');
+        });
+      });
+    }
+
+    function renderAngles(s) {
+      return s.angles.map(a => `
+        <div class="angle">
+          <div class="alabel">${a.label}</div>
+          ${a.text}
+        </div>
+      `).join('') + `<div class="readmore">↳ ${s.readmore}</div>`;
+    }
+
+    // Bind theme card clicks
+    function bindCards() {
+      document.querySelectorAll('.theme-card').forEach(c => {
+        c.addEventListener('click', () => {
+          document.querySelectorAll('.theme-card').forEach(b => b.classList.remove('active'));
+          c.classList.add('active');
+          renderThemeDetail(c.dataset.theme);
+        });
+      });
+    }
+
+    renderThemeGrid();
+    bindCards();
+    renderThemeDetail('genocide');
+    // Auto-open Q3 in the first relevant theme for a demo
+    setTimeout(() => {
+      // Open occupation theme for demo (where Q3 is)
+      // But initial render is genocide. Leave it.
+    }, 0);
+  </script>
+</section>
+
+<!-- ===== §05 SAMPLE FLOWS ===== -->
+<section class="block" id="sample">
+  <style>
+    /* Route tabs */
+    .route-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 760px) { .route-tabs { grid-template-columns: 1fr 1fr; } }
+    .route-tab {
+      font-family: inherit;
+      background: var(--paper-deep);
+      border: 1.5px solid var(--rule);
+      padding: 16px 18px 14px;
+      cursor: pointer;
+      text-align: left;
+      transition: all .18s ease;
+      display: flex; flex-direction: column;
+      gap: 4px;
+      position: relative;
+    }
+    .route-tab:hover { border-color: var(--ink); transform: translateY(-2px); }
+    .route-tab.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--paper);
+    }
+    .route-tab .rk {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .route-tab.active .rk { color: var(--rule); }
+    .route-tab .rt {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+    .route-tab .rc {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-mute);
+      margin-top: 2px;
+    }
+    .route-tab.active .rc { color: var(--rule); }
+    .route-tab.canned { border-left: 3px solid var(--warn); }
+    .route-tab.active.canned { border-left-color: var(--warn); }
+
+    /* Flow container */
+    .flow-col {
+      background: var(--paper-deep);
+      border: 1px solid var(--rule);
+      padding: 0;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+    .flow-head {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+    .flow-head .badge {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 99px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .flow-head .badge.r1, .flow-head .badge.r2 { background: rgba(206,17,38,.12); color: var(--red); }
+    .flow-head .badge.r3, .flow-head .badge.r4 { background: rgba(178,94,0,.14); color: var(--warn); }
+    .flow-head .badge.b { background: rgba(0,98,51,.12); color: var(--green); }
+    .flow-head h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      margin: 0 0 4px;
+      line-height: 1.2;
+    }
+    .flow-head .who {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-mute);
+    }
+    .flow-head .summary {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-mute);
+      text-align: right;
+      line-height: 1.5;
+    }
+    .flow-head .summary strong {
+      color: var(--ink);
+      font-family: var(--mono);
+      font-weight: 600;
+    }
+    .flow-step {
+      padding: 16px 28px;
+      border-bottom: 1px dashed var(--rule);
+      background: var(--paper-deep);
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step .num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 6px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .flow-step .num em {
+      font-family: var(--mono);
+      font-style: normal;
+      color: var(--ink-mute);
+    }
+    .flow-step h5 {
+      font-family: var(--serif);
+      font-size: 15.5px;
+      font-weight: 500;
+      margin: 0 0 4px;
+      line-height: 1.3;
+    }
+    .flow-step .desc {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .flow-step .desc code {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--paper);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+    .flow-step.io { background: var(--paper); }
+    .flow-step .io-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--ink);
+      padding: 10px 12px;
+      background: var(--paper-deep);
+      border-left: 3px solid var(--ink-soft);
+    }
+    .flow-step .io-text.r1, .flow-step .io-text.r2 { border-left-color: var(--red); }
+    .flow-step .io-text.r3, .flow-step .io-text.r4 { border-left-color: var(--warn); }
+    .flow-step .io-text.b { border-left-color: var(--green); }
+
+    /* Keyword dropdown mock */
+    .dropdown-mock {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-top: none;
+      margin: 6px 0 0;
+    }
+    .dropdown-mock .dh {
+      padding: 8px 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .dropdown-mock .dr {
+      padding: 10px 14px;
+      border-top: 1px solid var(--rule-soft);
+      cursor: pointer;
+      transition: background .15s ease;
+      display: flex; gap: 10px; align-items: center;
+    }
+    .dropdown-mock .dr:hover { background: var(--paper-deep); }
+    .dropdown-mock .dr:first-of-type { border-top: none; }
+    .dropdown-mock .dr .qn {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-mute);
+    }
+    .dropdown-mock .dr .qt {
+      font-family: var(--serif);
+      font-size: 14.5px;
+      color: var(--ink);
+    }
+    .dropdown-mock .seemore {
+      padding: 10px 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .04em;
+      color: var(--red);
+      border-top: 1px solid var(--rule-soft);
+      background: var(--paper-deep);
+    }
+
+    .flow-answer {
+      padding: 22px 28px;
+      background: var(--ink);
+      color: var(--paper-deep);
+      font-family: var(--serif);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+    .flow-answer.canned {
+      background: var(--warn);
+      color: #fff;
+    }
+    .flow-answer .lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--rule);
+      margin-bottom: 12px;
+    }
+    .flow-answer.canned .lbl { color: rgba(255,255,255,.7); }
+    .flow-answer .tpl-header {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: var(--rule);
+      padding: 8px 12px;
+      background: rgba(244,238,226,.06);
+      border-left: 2px solid var(--rule);
+      margin-bottom: 14px;
+    }
+    .flow-answer p { margin: 0 0 12px; }
+    .flow-answer .angle-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--rule);
+      margin-bottom: 4px;
+      display: block;
+    }
+    .flow-answer a {
+      color: var(--paper);
+      text-decoration: underline;
+    }
+    .flow-answer cite {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .04em;
+      color: var(--rule);
+      font-style: normal;
+      display: block;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #2A2725;
+    }
+    .flow-answer.canned cite { border-top-color: rgba(255,255,255,.2); color: rgba(255,255,255,.6); }
+    .flow-footer {
+      padding: 14px 28px;
+      background: var(--paper);
+      border-top: 1px solid var(--rule);
+      display: flex; justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-mute);
+      flex-wrap: wrap; gap: 6px;
+    }
+    .flow-footer .cost-pill {
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .flow-footer .cost-pill.red { background: rgba(206,17,38,.12); color: var(--red); }
+    .flow-footer .cost-pill.warn { background: rgba(178,94,0,.14); color: var(--warn); }
+    .flow-footer .cost-pill.green { background: rgba(0,98,51,.12); color: var(--green); }
+
+    /* Browse section divider */
+    .browse-divider {
+      margin: 50px 0 28px;
+      padding: 20px 0;
+      border-top: 2px solid var(--green);
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--green);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .browse-divider .right {
+      font-family: var(--serif);
+      font-size: 17px;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--ink);
+      font-style: italic;
+    }
+
+    .same-answer-band {
+      margin-top: 30px;
+      padding: 22px 28px;
+      background: var(--paper-deep);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--ink);
+      font-family: var(--serif);
+      font-size: 17px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .same-answer-band strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">§05 — Sample flows</div>
+      <div>
+        <h2>Four search routes, <em>one browse lane.</em></h2>
+        <p class="section-sub">Each tab below walks through one of the four routes the search bot's classifier can pick — two that resolve to verbatim corpus content, two that resolve to fixed canned responses. The browse lane is shown separately at the bottom. No language model is invoked in any output path.</p>
+      </div>
+    </div>
+
+    <!-- Route tabs -->
+    <div class="route-tabs" role="tablist">
+      <button class="route-tab active" data-route="r1" role="tab">
+        <span class="rk">Route 1</span>
+        <span class="rt">Question</span>
+        <span class="rc">→ verbatim corpus</span>
+      </button>
+      <button class="route-tab" data-route="r2" role="tab">
+        <span class="rk">Route 2</span>
+        <span class="rt">Keyword</span>
+        <span class="rc">→ suggest → verbatim</span>
+      </button>
+      <button class="route-tab canned" data-route="r3" role="tab">
+        <span class="rk">Route 3</span>
+        <span class="rt">Knowledge query</span>
+        <span class="rc">→ canned A · external links</span>
+      </button>
+      <button class="route-tab canned" data-route="r4" role="tab">
+        <span class="rk">Route 4</span>
+        <span class="rt">Unknown myth</span>
+        <span class="rc">→ canned B · external links</span>
+      </button>
+    </div>
+
+    <!-- Flow panel (one of four routes) -->
+    <div id="flowPanel">
+      <!-- Filled by JS -->
+    </div>
+
+    <!-- Browse lane -->
+    <div class="browse-divider">
+      <span>▣ Door B — Browse lane (no classifier needed)</span>
+      <span class="right">"I want to see all the myths about Aid &amp; Famine."</span>
+    </div>
+
+    <div class="flow-col">
+      <div class="flow-head">
+        <div>
+          <div class="badge b">▣ Browse lane</div>
+          <h3>Sami, solidarity organiser.</h3>
+          <div class="who">Preparing slides for a teach-in · scans by theme</div>
+        </div>
+        <div class="summary">
+          Total latency · ~4s<br>
+          <strong>Cost · $0.00000</strong>
+        </div>
+      </div>
+
+      <div class="flow-step io">
+        <div class="num"><span>Step 1 · Land on home page</span><em>t=0s</em></div>
+        <div class="io-text b">Sees 13 theme cards. Doesn't type anything.</div>
+      </div>
+
+      <div class="flow-step">
+        <div class="num"><span>Step 2 · Tap "Aid &amp; Famine"</span><em>t=0.4s · static lookup</em></div>
+        <h5>Theme catalog returns the 3 myths filed under this theme.</h5>
+        <div class="desc">JSON lookup against the theme index. CDN-cached. No backend hit if warm.</div>
+      </div>
+
+      <div class="flow-step">
+        <div class="num"><span>Step 3 · Theme page renders</span><em>t=0.6s</em></div>
+        <h5>Accordion of three myths, collapsed.</h5>
+        <div class="desc">
+          ▾ Israel is not restricting humanitarian aid into Gaza.<br>
+          ▾ Hamas steals the aid — that's why Palestinians are starving.<br>
+          ▾ Why should Israel supply an enemy population with water, food, and medicine?
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="num"><span>Step 4 · Tap a myth</span><em>t=~3s · human reading time</em></div>
+        <h5>Inline expansion. No page navigation.</h5>
+        <div class="desc">The myth row stays in place; the answer body opens beneath it. No LLM call. The bytes shown are the bytes the editor approved.</div>
+      </div>
+
+      <div class="flow-answer">
+        <div class="lbl">Output (inline accordion)</div>
+        <p><span class="angle-label">Angle 1</span> Israel has imposed the worst restrictions on humanitarian aid in Gaza in over 70 years of occupation, deliberately engineering mass starvation as a method of warfare. The IPC has classified the territory as facing imminent famine; the WHO and OCHA have documented sustained obstruction of medical supplies, fuel, and food convoys.</p>
+        <p><span class="angle-label">Angle 2</span> Even Israel's closest allies have condemned the aid restrictions. The ICJ ordered Israel to allow "immediate and effective" humanitarian aid in January 2024 — Israel has not complied with that order.</p>
+        <p><span class="angle-label">Angle 3</span> The Gaza Humanitarian Foundation (GHF) is not aid. MSF, Save the Children, and Oxfam have all characterised the US-backed distribution points as sites of orchestrated killing...</p>
+        <p><em>+ Angle 4 + Read more · all from canonical_answers.jsonl</em></p>
+        <cite>Sources: WHO · IPC · ICJ · MSF · Save the Children · Oxfam · Al-Haq · Gisha — all linked verbatim from the corpus.</cite>
+      </div>
+
+      <div class="flow-footer">
+        <span>Total latency · ~4s (human reading dominates)</span>
+        <span class="cost-pill green">Cost · $0.00000</span>
+      </div>
+    </div>
+
+    <div class="same-answer-band">
+      <strong>The invariant.</strong> Three of the five end-states render verbatim corpus content; two render fixed canned templates. <strong>None invoke a language model in the output path.</strong> The LLM's entire role is the ~50-token classification call that picks the route — total cost on the order of $0.0001 per search session. The bytes the user sees are always either the editor's bytes or a pre-written template string.
+    </div>
+  </div>
+
+  <script>
+    const flows = {
+      r1: {
+        badgeClass: 'r1', ioClass: 'r1', costClass: 'red', costLabel: 'Cost · $0.0002',
+        latency: 'Total latency · 1.6s',
+        badgeText: '◆ Route 1 · Question · → verbatim corpus',
+        name: 'Maya, journalism student.',
+        who: 'Encountered the claim on Twitter · types a full sentence',
+        steps: [
+          {type:'io', num:'Step 1 · Input', t:'t=0s',
+           ioText: '"someone keeps saying israel left gaza in 2005 so it can\'t be occupied anymore. is that actually true?"'},
+          {type:'step', num:'Step 2 · Classifier', t:'t=0.1s · Haiku 4.5 · ~50 tokens',
+           h5:'LLM labels the input as QUESTION.',
+           desc:'Single classification call. Output: <code>{"route":"QUESTION","confidence":0.94}</code>. No other LLM call in the entire session.'},
+          {type:'step', num:'Step 3 · Embed', t:'t=0.3s',
+           h5:'Vectorise the query.',
+           desc:'OpenAI text-embedding-3-small · 1536-dim · ~$0.00002 · cached for 24h.'},
+          {type:'step', num:'Step 4 · Match', t:'t=0.4s',
+           h5:'Top-1 cosine match against canonical questions.',
+           desc:'<code>Q3 · score 0.87</code> — "Israel withdrew from Gaza in 2005 and no longer occupies it." Above the 0.62 confidence floor → render verbatim.'},
+          {type:'step', num:'Step 5 · Fetch + render', t:'t=0.5s · no LLM',
+           h5:'Canonical answer rendered byte-for-byte.',
+           desc:'Fixed template header prepended. First 4 angles shown in editorial order; "see more" reveals the rest. Citations preserved.'}
+        ],
+        answer: {
+          tpl: 'Answer for: "Israel withdrew from Gaza in 2005 and no longer occupies it."',
+          paragraphs: [
+            '<span class="angle-label">Angle 1 · Legal</span>Under international law, occupation is determined by effective control, not by the physical presence of soldiers inside a territory. The 2005 withdrawal moved Israeli forces out of Gaza but kept Israel in control of Gaza\'s borders, airspace, territorial waters, population registry, electromagnetic spectrum, and the flow of food, fuel, and medicine. The ICRC, the UN, and the ICJ have consistently held that Gaza remains occupied territory.',
+            '<span class="angle-label">Angle 2 · Analogical</span>A jailer does not cease to be a jailer by stepping outside the cell. Apartheid South Africa created Bantustans — nominally "self-governing" territories — while controlling their borders, resources, and populations. The international community rejected those fictions unanimously. Gaza is not different.',
+            '<span class="angle-label">Angle 3 · Structural</span>Israel retained the right to enter Gaza militarily, to imprison Palestinians without trial, and to bombard the territory at will. It controls the population registry — Israel decides who is and isn\'t Palestinian — and the trade routes. Effective control was never relinquished; only the cost of administration was outsourced.',
+            '<span class="angle-label">Angle 4 · Historical</span>The 2005 "disengagement" was framed by Sharon\'s advisor Dov Weisglass as "formaldehyde" for the peace process — a freeze, not a thaw. The settlements removed from Gaza were a fraction of the West Bank settlement project, which expanded rapidly in the same period.',
+            '<em>+ See more (1 additional angle) · Read More (14 sources)</em>'
+          ],
+          cite: 'Sources: ICJ Advisory Opinion (2024) · ICRC IHL Database · Atlantic Council · UN OCHA · Al-Haq · B\'Tselem — preserved verbatim from the corpus.'
+        }
+      },
+
+      r2: {
+        badgeClass: 'r2', ioClass: 'r2', costClass: 'red', costLabel: 'Cost · $0.0002',
+        latency: 'Total latency · ~3.5s (incl. user tap)',
+        badgeText: '◆ Route 2 · Keyword · → suggest → verbatim',
+        name: 'Layla, organiser at a campus rally.',
+        who: 'Wants info about Gaza aid · types just one word',
+        steps: [
+          {type:'io', num:'Step 1 · Input', t:'t=0s',
+           ioText: '"aid"'},
+          {type:'step', num:'Step 2 · Classifier', t:'t=0.1s · Haiku 4.5 · ~50 tokens',
+           h5:'LLM labels the input as KEYWORD.',
+           desc:'Single-word input · output: <code>{"route":"KEYWORD","term":"aid"}</code>. Does NOT trigger retrieval of any answer.'},
+          {type:'step', num:'Step 3 · Semantic suggest', t:'t=0.2s',
+           h5:'Surface up to 5 related myths.',
+           desc:'Embedding-based semantic lookup against canonical question titles + keywords. Returns myths whose embedding falls within the keyword\'s semantic neighbourhood.',
+           extra: `<div class="dropdown-mock">
+             <div class="dh">3 myths related to "aid" · max 5 shown</div>
+             <div class="dr"><span class="qn">Q71</span><span class="qt">Israel is not restricting humanitarian aid into Gaza.</span></div>
+             <div class="dr"><span class="qn">Q72</span><span class="qt">Hamas steals the aid — that\'s why Palestinians are starving.</span></div>
+             <div class="dr"><span class="qn">Q41</span><span class="qt">Why should Israel supply an enemy population with food and medicine?</span></div>
+             <div class="seemore">→ See more in the Aid &amp; Famine theme</div>
+           </div>`},
+          {type:'step', num:'Step 4 · User taps Q71', t:'t=3.2s · human selection',
+           h5:'Deterministic path from here.',
+           desc:'No further classifier call. No embedding. Direct fetch of Q71\'s canonical answer record.'},
+          {type:'step', num:'Step 5 · Fetch + render', t:'t=3.3s · no LLM',
+           h5:'Verbatim render, same template as Route 1.',
+           desc:'Fixed template header + 4 angles in editorial order + see-more control.'}
+        ],
+        answer: {
+          tpl: 'Answer for: "Israel is not restricting humanitarian aid into Gaza."',
+          paragraphs: [
+            '<span class="angle-label">Angle 1 · Documentation</span>Israel has imposed the worst restrictions on humanitarian aid in over 70 years of occupation. The IPC has classified Gaza as facing imminent famine; the WHO and OCHA have documented sustained obstruction of medical supplies, fuel, and food convoys. The blockade is the cause of the famine.',
+            '<span class="angle-label">Angle 2 · Legal</span>The ICJ ordered Israel in January 2024 to allow "immediate and effective" humanitarian aid as a binding provisional measure. Israel has not complied with that order. The ICC has subsequently issued arrest warrants for Netanyahu and Gallant for the war crime of starvation as a method of warfare.',
+            '<span class="angle-label">Angle 3 · Mechanism</span>Israel has a documented "Red Lines" calorie calculation policy capping the food allowed into Gaza per person per day. Gisha and Al-Haq have published the original documents. This is not aid management — it is engineered starvation.',
+            '<span class="angle-label">Angle 4 · Reality on the ground</span>MSF, Save the Children, and Oxfam have all characterised the US-backed Gaza Humanitarian Foundation distribution points as "sites of orchestrated killing"...',
+            '<em>+ See more · Read More (12 sources)</em>'
+          ],
+          cite: 'Sources: WHO · IPC · ICJ · ICC · Gisha · Al-Haq · MSF · Save the Children · Oxfam — preserved verbatim.'
+        }
+      },
+
+      r3: {
+        badgeClass: 'r3', ioClass: 'r3', costClass: 'warn', costLabel: 'Cost · $0.0001',
+        latency: 'Total latency · 0.3s',
+        badgeText: '⚑ Route 3 · Knowledge query · → canned A',
+        name: 'Imran, curious newcomer to the topic.',
+        who: 'Genuine question, not a myth · expects encyclopedic info',
+        steps: [
+          {type:'io', num:'Step 1 · Input', t:'t=0s',
+           ioText: '"what is Hamas?"'},
+          {type:'step', num:'Step 2 · Classifier', t:'t=0.1s · Haiku 4.5 · ~50 tokens',
+           h5:'LLM labels as KNOWLEDGE_QUERY.',
+           desc:'Signals: interrogative ("what is"), topical (proper noun), no assertive structure. Output: <code>{"route":"KNOWLEDGE_QUERY","confidence":0.91}</code>.'},
+          {type:'step', num:'Step 3 · Skip retrieval entirely', t:'t=0.1s',
+           h5:'No embedding. No vector search.',
+           desc:'The system never attempts to match this against a myth. Trying to answer "what is Hamas" from the corpus would surface Q2 (Hamas = ISIS) or similar — wrong for this user\'s actual intent.'},
+          {type:'step', num:'Step 4 · Render canned response A', t:'t=0.2s',
+           h5:'Fixed template, no model call.',
+           desc:'Identical text for every user who lands here. PIPD-approved copy with curated external links.'}
+        ],
+        answer: {
+          canned: true,
+          tpl: 'Canned response A · KNOWLEDGE_QUERY',
+          paragraphs: [
+            '<strong>Pali Answers is not a general knowledge tool. It focuses on responding to common myths and misinformation related to Palestine.</strong>',
+            'If you would like to deepen your knowledge, we recommend the following resources:',
+            '→ <a href="#">communicatingpalestine.org/tools#external-resources</a>',
+            '→ <a href="#">thepipd.com/how-can-i-help-palestine/</a>'
+          ],
+          cite: 'This response is fixed. The wording is identical for every knowledge query that the classifier identifies, regardless of subject.'
+        }
+      },
+
+      r4: {
+        badgeClass: 'r4', ioClass: 'r4', costClass: 'warn', costLabel: 'Cost · $0.0001',
+        latency: 'Total latency · 0.3s',
+        badgeText: '⚑ Route 4 · Unknown myth · → canned B',
+        name: 'Hadi, encountered a new talking point.',
+        who: 'Heard a claim and types it as an assertion · not in corpus',
+        steps: [
+          {type:'io', num:'Step 1 · Input', t:'t=0s',
+           ioText: '"Palestinians sold their land to early Zionists."'},
+          {type:'step', num:'Step 2 · Classifier', t:'t=0.1s · Haiku 4.5 · ~50 tokens',
+           h5:'LLM labels as UNKNOWN_MYTH.',
+           desc:'Signals: declarative sentence, accusatory framing, no matching canonical Q above 0.62 confidence floor. Output: <code>{"route":"UNKNOWN_MYTH","top_match":"Q19","score":0.43}</code>. Below threshold → unknown myth.'},
+          {type:'step', num:'Step 3 · Skip retrieval', t:'t=0.1s',
+           h5:'Do not attempt a low-confidence answer.',
+           desc:'Surfacing a barely-related canonical answer would be misleading. The system tells the user the myth isn\'t covered yet, and points to external resources that may help.'},
+          {type:'step', num:'Step 4 · Render canned response B', t:'t=0.2s',
+           h5:'Fixed template, no model call.',
+           desc:'Identical text for every user landing here. Also logs the query to a queue the editorial team reviews for future corpus additions.'}
+        ],
+        answer: {
+          canned: true,
+          tpl: 'Canned response B · UNKNOWN_MYTH',
+          paragraphs: [
+            '<strong>This myth is not yet in our database. PaliAnswers is continuously expanding based on user needs. Our team will work to include this myth in future updates.</strong>',
+            'In the meantime, you can explore:',
+            '→ <a href="#">decolonizepalestine.com/myths/</a>',
+            '→ <a href="#">thepipd.com/category/projects/myths-vs-reality/</a>'
+          ],
+          cite: 'This response is fixed. The original query is also logged (anonymously) to an editorial backlog so the team can decide which new myths to add to the corpus.'
+        }
+      }
+    };
+
+    function renderFlow(routeKey) {
+      const f = flows[routeKey];
+      const stepsHTML = f.steps.map(s => {
+        if (s.type === 'io') {
+          return `<div class="flow-step io">
+            <div class="num"><span>${s.num}</span><em>${s.t}</em></div>
+            <div class="io-text ${f.ioClass}">${s.ioText}</div>
+          </div>`;
+        }
+        return `<div class="flow-step">
+          <div class="num"><span>${s.num}</span><em>${s.t}</em></div>
+          <h5>${s.h5}</h5>
+          <div class="desc">${s.desc}</div>
+          ${s.extra || ''}
+        </div>`;
+      }).join('');
+
+      const ans = f.answer;
+      const ansHTML = `
+        <div class="flow-answer ${ans.canned ? 'canned' : ''}">
+          <div class="lbl">${ans.canned ? 'Canned response · no LLM' : 'Verbatim canonical answer · no LLM in output'}</div>
+          <div class="tpl-header">${ans.tpl}</div>
+          ${ans.paragraphs.map(p => `<p>${p}</p>`).join('')}
+          <cite>${ans.cite}</cite>
+        </div>`;
+
+      const html = `
+        <div class="flow-col">
+          <div class="flow-head">
+            <div>
+              <div class="badge ${f.badgeClass}">${f.badgeText}</div>
+              <h3>${f.name}</h3>
+              <div class="who">${f.who}</div>
+            </div>
+            <div class="summary">
+              ${f.latency}<br>
+              <strong>${f.costLabel}</strong>
+            </div>
+          </div>
+          ${stepsHTML}
+          ${ansHTML}
+          <div class="flow-footer">
+            <span>${f.latency}</span>
+            <span class="cost-pill ${f.costClass}">${f.costLabel}</span>
+          </div>
+        </div>`;
+
+      document.getElementById('flowPanel').innerHTML = html;
+    }
+
+    document.querySelectorAll('.route-tab').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.route-tab').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        renderFlow(b.dataset.route);
+      });
+    });
+    renderFlow('r1');
+  </script>
+</section>
+
+<!-- ===== §06 STACK ===== -->
+<section class="block tinted" id="stack">
+  <style>
+    .stack-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+    }
+    @media (max-width: 800px) {
+      .stack-grid { grid-template-columns: 1fr; }
+    }
+    .stack-grid > div {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+    }
+    .stack-grid > div:nth-child(3n) { border-right: none; }
+    @media (max-width: 800px) {
+      .stack-grid > div { border-right: none !important; }
+    }
+    .stack-row-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      align-self: center;
+    }
+    .stack-cell .name {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+    .stack-cell .desc {
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .stack-cell.search .name::before {
+      content: "◆ ";
+      color: var(--red);
+    }
+    .stack-cell.browse .name::before {
+      content: "▣ ";
+      color: var(--green);
+    }
+    .stack-cell.shared .name::before {
+      content: "● ";
+      color: var(--ink);
+    }
+    .stack-header {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .stack-header .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--rule);
+      margin-bottom: 4px;
+    }
+    .stack-header .h {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 400;
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">§06 — Stack</div>
+      <div>
+        <h2>What's <em>under the hood.</em></h2>
+        <p class="section-sub">The LLM appears in exactly one row — as a classifier, not a writer. Everything else is a vector index, a static JSON catalog, and the CMS that wraps both. Both surfaces ship as embedded components on <code style="font-family:var(--mono);font-size:13px;">communicatingpalestine.org/tools</code>, not as standalone applications.</p>
+      </div>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-row-label">Layer</div>
+      <div class="stack-header"><div class="label">Door A · Search Bot</div><div class="h">classifier-routed, verbatim output</div></div>
+      <div class="stack-header"><div class="label">Door B · Browse by Theme</div><div class="h">static catalog, accordion</div></div>
+
+      <div class="stack-row-label">Frontend</div>
+      <div class="stack-cell search"><div class="name">Embedded chat widget · React or vanilla JS</div><div class="desc">Single input field · suggested prompts on landing · keyword dropdown when classifier returns KEYWORD · canned-response panel for Routes 3 &amp; 4.</div></div>
+      <div class="stack-cell browse"><div class="name">Embedded theme catalog · static HTML/JS</div><div class="desc">13 theme cards on home · accordion myth pages · inline expand. Ships as a component inside the parent CMS.</div></div>
+
+      <div class="stack-row-label">Content layer</div>
+      <div class="stack-cell shared" style="grid-column: 2 / -1;"><div class="name">Single source of truth · <code style="font-family:var(--mono);font-size:13px;background:var(--paper-deep);padding:1px 5px;border-radius:3px;">canonical_answers.jsonl</code> + 2 canned templates</div><div class="desc">One Git-tracked corpus file for the 72 myths (titles, answer angles, citations, theme tags). Two short fixed-text templates for the canned Scenario-A and Scenario-B responses. Built into two artefacts at deploy time: a vector index and a themes JSON.</div></div>
+
+      <div class="stack-row-label">Classifier</div>
+      <div class="stack-cell search"><div class="name">Claude Haiku 4.5 · or GPT-4o-mini</div><div class="desc"><strong>The only LLM call in the entire system.</strong> Input: user's raw query. Output: one of <code>QUESTION</code> / <code>KEYWORD</code> / <code>KNOWLEDGE_QUERY</code> / <code>UNKNOWN_MYTH</code> plus confidence. ~50 output tokens · temperature 0 · prompt-cached.</div></div>
+      <div class="stack-cell browse"><div class="name">— not applicable —</div><div class="desc">Tapping a theme card invokes zero models. Pure JSON lookup.</div></div>
+
+      <div class="stack-row-label">Embedding</div>
+      <div class="stack-cell search"><div class="name">OpenAI text-embedding-3-small</div><div class="desc">1536-dim · $0.02 / 1M tokens · only fires on Routes 1 &amp; 2 · cached for 24h on identical queries. Cost &lt; $0.00002 per call.</div></div>
+      <div class="stack-cell browse"><div class="name">— not applicable —</div><div class="desc">Themes are an editorial taxonomy, not a clustering output. No embeddings needed.</div></div>
+
+      <div class="stack-row-label">Retrieval</div>
+      <div class="stack-cell search"><div class="name">pgvector (Postgres) · or Pinecone free tier</div><div class="desc">Cosine similarity against ~72 canonical questions for Route 1 · semantic match against question + keyword tags for Route 2. Confidence floor at 0.62 → otherwise drop to UNKNOWN_MYTH.</div></div>
+      <div class="stack-cell browse"><div class="name">Static JSON over CDN</div><div class="desc">13 theme files (~50KB total) · pre-fetched on home screen · cache-control 1h. Cheaper than a database read.</div></div>
+
+      <div class="stack-row-label">Output rendering</div>
+      <div class="stack-cell search"><div class="name">Deterministic Python/JS · no LLM</div><div class="desc">Routes 1 &amp; 2: fetch canonical record, prepend fixed template header ("Answer for: &lt;Q title&gt;"), render first 4 angles + see-more. Routes 3 &amp; 4: render canned template string with curated external links.</div></div>
+      <div class="stack-cell browse"><div class="name">Inline accordion expand</div><div class="desc">Click myth → fetch the same canonical record → render same 4-angles + see-more view as the search lane. Zero divergence between doors.</div></div>
+
+      <div class="stack-row-label">Hosting</div>
+      <div class="stack-cell shared" style="grid-column: 2 / -1;"><div class="name">Subpage of <code style="font-family:var(--mono);font-size:13px;background:var(--paper-deep);padding:1px 5px;border-radius:3px;">communicatingpalestine.org/tools#pali-answers</code></div><div class="desc">Both surfaces ship as embedded components inside the parent CMS (Webflow / WordPress / similar). Backend API for the classifier + retrieval runs on lightweight serverless (Vercel / Cloudflare Workers / Fly.io). No separate domain, no separate hosting bill for the catalog itself.</div></div>
+
+      <div class="stack-row-label">Editorial</div>
+      <div class="stack-cell shared" style="grid-column: 2 / -1;"><div class="name">Git-tracked content workflow · CI builds both artefacts</div><div class="desc">Editors edit JSONL records (the corpus) and two short markdown files (the canned templates). A CI step rebuilds the vector index and regenerates the themes JSON. Both surfaces redeploy from the same commit, so they can never drift.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== §07 COST ===== -->
+<section class="block" id="cost">
+  <style>
+    .cost-intro {
+      max-width: 820px;
+      margin-bottom: 40px;
+    }
+    .cost-intro p {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin: 0 0 14px;
+    }
+    .cost-intro p strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .mix-band {
+      margin: 0 0 40px;
+      padding: 28px 32px;
+      background: var(--paper-deep);
+      border: 1px solid var(--rule);
+    }
+    .mix-band h4 {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin: 0 0 18px;
+    }
+    .mix-bar {
+      height: 32px;
+      display: flex;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      box-shadow: inset 0 0 0 1px var(--rule);
+    }
+    .mix-bar div {
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: var(--paper);
+    }
+    .mix-bar .b-search { background: var(--red); width: 55%; }
+    .mix-bar .b-browse { background: var(--green); width: 45%; }
+    .mix-band .legend {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+    .mix-band .legend span { display: flex; align-items: center; gap: 8px; }
+    .mix-band .legend i {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 2px;
+    }
+    .mix-band .legend .red i { background: var(--red); }
+    .mix-band .legend .green i { background: var(--green); }
+
+    /* Comparison overview */
+    .compare-overview {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 60px;
+      font-size: 14px;
+      background: var(--paper-deep);
+      border: 1px solid var(--rule);
+    }
+    .compare-overview th, .compare-overview td {
+      padding: 16px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: middle;
+    }
+    .compare-overview th {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .compare-overview tr:last-child td { border-bottom: none; }
+    .compare-overview .opt-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.25;
+    }
+    .compare-overview .opt-name small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-mute);
+      margin-top: 2px;
+    }
+    .compare-overview .price {
+      font-family: var(--mono);
+      font-weight: 600;
+    }
+    .compare-overview .price.low { color: var(--green); }
+    .compare-overview .price.mid { color: var(--warn); }
+    .compare-overview .price.high { color: var(--red); }
+    .lock-bar {
+      display: inline-flex; gap: 2px;
+    }
+    .lock-bar span {
+      width: 18px; height: 6px;
+      background: var(--rule);
+      border-radius: 1px;
+    }
+    .lock-bar span.on { background: var(--ink); }
+    .meta-line {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-mute);
+      margin-top: 4px;
+    }
+
+    .opts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .opts-grid .opt.span-2 {
+      grid-column: 1 / -1;
+      background: var(--paper);
+      border: 1.5px solid var(--green);
+      position: relative;
+    }
+    .opts-grid .opt.span-2::before {
+      content: "▸ Fastest path · weekend build";
+      position: absolute; top: -10px; left: 22px;
+      background: var(--green); color: var(--paper);
+      padding: 2px 12px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 880px) { .opts-grid { grid-template-columns: 1fr; } }
+    .opt {
+      background: var(--paper-deep);
+      border: 1px solid var(--rule);
+      padding: 28px;
+    }
+    .opt .tag-line {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 10px;
+    }
+    .opt h3 {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 500;
+      margin: 0 0 6px;
+      line-height: 1.1;
+    }
+    .opt h3 em {
+      font-style: italic;
+      color: var(--green);
+      font-weight: 400;
+    }
+    .opt > p.opt-desc {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin: 0 0 20px;
+    }
+    .opt-line {
+      display: flex; justify-content: space-between;
+      padding: 8px 0;
+      border-top: 1px dashed var(--rule);
+      font-size: 13.5px;
+    }
+    .opt-line:last-of-type { border-bottom: 1px dashed var(--rule); }
+    .opt-line .lbl { color: var(--ink-soft); }
+    .opt-line .val {
+      font-family: var(--mono);
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .opt-totals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 2px solid var(--ink);
+    }
+    .tcell {
+      background: var(--paper);
+      padding: 12px 14px;
+      border: 1px solid var(--rule);
+    }
+    .tcell .lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 4px;
+    }
+    .tcell .amt {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--ink);
+    }
+    .opt-tradeoffs {
+      margin-top: 22px;
+      display: grid;
+      gap: 10px;
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    .opt-tradeoffs .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-right: 6px;
+    }
+    .opt-tradeoffs > div:nth-child(2) .tag { color: var(--red); }
+
+    .scenario {
+      padding: 20px 24px;
+      border-left: 3px solid var(--ink);
+      background: var(--paper-deep);
+      font-family: var(--serif);
+      font-size: 15.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin-top: 18px;
+    }
+    .scenario strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">§07 — Cost model</div>
+      <div>
+        <h2>The classifier-only <em>collapse.</em></h2>
+        <p class="section-sub">Once the LLM is reduced to a ~50-token classifier and removed from every output path, model inference becomes a rounding error inside a rounding error. At 5–10K sessions/month, the dominant cost is the platform fees of whichever vendor wraps the search backend — not tokens. Hosting the catalog itself is free because it ships as a subpage of the parent CMS.</p>
+      </div>
+    </div>
+
+    <div class="cost-intro">
+      <p><strong>Per-session cost.</strong> Routes 1 &amp; 2 (question / keyword → verbatim corpus) trigger one classifier call plus one embedding call plus one vector-store read — about <strong>$0.0002 / session</strong>. Routes 3 &amp; 4 (knowledge query / unknown myth → canned response) skip retrieval entirely — about <strong>$0.0001 / session</strong>. Browse sessions cost <strong>$0.00000</strong> (pure JSON lookup from CDN). PIPD's "Scenario A" maps to Route 3; "Scenario B" maps to Route 4.</p>
+      <p><strong>Per-month cost.</strong> Across 5,000–10,000 sessions at a <strong>55% search · 45% browse</strong> mix, the total LLM bill is approximately <strong>$0.30 – $1.00 per month</strong>. The dominant line items are the platform/hosting fees of whichever vendor runs the search backend, not model usage.</p>
+    </div>
+
+    <div class="mix-band">
+      <h4>Expected traffic mix · 5K — 10K sessions / month</h4>
+      <div class="mix-bar">
+        <div class="b-search">55% · search bot (~$0.0001–0.0002 / session)</div>
+        <div class="b-browse">45% · browse by theme ($0.00000 / session)</div>
+      </div>
+      <div class="legend">
+        <span class="red"><i></i> Classifier-only LLM call · ~50 output tokens · prompt-cached</span>
+        <span class="green"><i></i> Static CDN lookup · zero models, zero database hits</span>
+      </div>
+    </div>
+
+    <table class="compare-overview" aria-label="Comparison of five build options at the verbatim-retrieval traffic mix">
+      <thead>
+        <tr>
+          <th>Build path</th>
+          <th>Cost @ 5K /mo (mix)</th>
+          <th>Cost @ 10K /mo (mix)</th>
+          <th>Vendor lock-in</th>
+          <th>Time to deploy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="opt-name">A · Custom DIY <small>Classifier API + pgvector + embed as CMS subpage</small></td>
+          <td class="price low">$1 – $8</td>
+          <td class="price low">$2 – $14</td>
+          <td>
+            <div class="lock-bar"><span class="on"></span><span></span><span></span><span></span></div>
+            <div class="meta-line">Low — code is yours</div>
+          </td>
+          <td><div class="meta-line">~4 weeks</div></td>
+        </tr>
+        <tr>
+          <td class="opt-name">B · Dify.ai + embed in CMS <small>Managed RAG backend, catalog ships from parent site</small></td>
+          <td class="price mid">$54 – $60</td>
+          <td class="price mid">$132 – $140</td>
+          <td>
+            <div class="lock-bar"><span class="on"></span><span class="on"></span><span></span><span></span></div>
+            <div class="meta-line">Medium — exportable</div>
+          </td>
+          <td><div class="meta-line">~1–2 weeks</div></td>
+        </tr>
+        <tr>
+          <td class="opt-name">C · Botpress + embed in CMS <small>Multi-channel reach (WhatsApp/Telegram) for search lane</small></td>
+          <td class="price mid">$59 – $65</td>
+          <td class="price high">$99 – $110</td>
+          <td>
+            <div class="lock-bar"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div>
+            <div class="meta-line">High — flow-bound</div>
+          </td>
+          <td><div class="meta-line">~1–2 weeks</div></td>
+        </tr>
+        <tr>
+          <td class="opt-name">D · Self-hosted OSS <small>Open-weight classifier + pgvector + embed in CMS</small></td>
+          <td class="price low">$5 – $12</td>
+          <td class="price low">$7 – $16</td>
+          <td>
+            <div class="lock-bar"><span class="on"></span><span></span><span></span><span></span></div>
+            <div class="meta-line">Very low — portable</div>
+          </td>
+          <td><div class="meta-line">~5–7 weeks</div></td>
+        </tr>
+        <tr>
+          <td class="opt-name">E · Vibe-coded on Replit <small>Replit Agent builds it under Claude's supervision · same shape as Option A</small></td>
+          <td class="price low">$26 – $33</td>
+          <td class="price low">$27 – $35</td>
+          <td>
+            <div class="lock-bar"><span class="on"></span><span class="on"></span><span></span><span></span></div>
+            <div class="meta-line">Medium — Replit-hosted</div>
+          </td>
+          <td><div class="meta-line">~3–7 days</div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="opts-grid">
+
+      <!-- Option A -->
+      <div class="opt">
+        <div class="tag-line">Option A · Custom DIY</div>
+        <h3>Build it. <em>Own it.</em></h3>
+        <p class="opt-desc">A small Python/Node API for the classifier + retrieval, pgvector in a Postgres instance, and the theme catalog as an embedded component on <code style="font-family:var(--mono);font-size:13px;">communicatingpalestine.org/tools</code>. Both surfaces deploy from the same Git repo.</p>
+
+        <div class="opt-line"><span class="lbl">LLM classifier · Haiku 4.5 (~50 out · 2,750 calls/mo @ 5K mix)</span><span class="val">&lt; $1</span></div>
+        <div class="opt-line"><span class="lbl">Embedding · text-embedding-3-small (Routes 1 + 2 only)</span><span class="val">&lt; $1</span></div>
+        <div class="opt-line"><span class="lbl">Catalog hosting · embedded in parent CMS</span><span class="val">$0</span></div>
+        <div class="opt-line"><span class="lbl">App VPS for backend (Hetzner / Fly.io)</span><span class="val">$0 – $7</span></div>
+        <div class="opt-line"><span class="lbl">Postgres + pgvector (Neon/Supabase free tier)</span><span class="val">$0</span></div>
+        <div class="opt-line"><span class="lbl">Domain · CDN</span><span class="val">$0 – $1</span></div>
+
+        <div class="opt-totals">
+          <div class="tcell"><div class="lbl">@ 5K /mo</div><div class="amt">$1 – $8</div></div>
+          <div class="tcell"><div class="lbl">@ 10K /mo</div><div class="amt">$2 – $14</div></div>
+        </div>
+
+        <div class="opt-tradeoffs">
+          <div><span class="tag">Strengths</span>Cheapest at scale · full editorial control · no LLM in any output path is provable by code review · catalog is mirror-able as static files.</div>
+          <div><span class="tag">Trade-offs</span>~4 weeks of engineering (down from 6 because there's no generation pipeline to build) · maintenance is on the team.</div>
+        </div>
+      </div>
+
+      <!-- Option B -->
+      <div class="opt">
+        <div class="tag-line">Option B · Dify.ai + CMS embed</div>
+        <h3>Ship in <em>a fortnight.</em></h3>
+        <p class="opt-desc">The classifier and retrieval run on Dify's managed RAG (knowledge base + workflow). The theme catalog ships as a static embed inside the parent CMS, reading from the same JSONL source. Two surfaces, one corpus, same week.</p>
+
+        <div class="opt-line"><span class="lbl">Dify Team plan (classifier + retrieval lane only)</span><span class="val">$59 / $139</span></div>
+        <div class="opt-line"><span class="lbl">Classifier + embedding tokens (pass-through)</span><span class="val">&lt; $1</span></div>
+        <div class="opt-line"><span class="lbl">Catalog hosting · embedded in parent CMS</span><span class="val">$0</span></div>
+        <div class="opt-line"><span class="lbl">Domain · CDN</span><span class="val">$0 – $1</span></div>
+
+        <div class="opt-totals">
+          <div class="tcell"><div class="lbl">@ 5K /mo</div><div class="amt">$54 – $60</div></div>
+          <div class="tcell"><div class="lbl">@ 10K /mo</div><div class="amt">$132 – $140</div></div>
+        </div>
+
+        <div class="opt-tradeoffs">
+          <div><span class="tag">Strengths</span>Fastest to launch · editorial team can update KB through Dify UI · classifier prompt iterated in Dify's playground · catalog is independent of Dify.</div>
+          <div><span class="tag">Trade-offs</span>Dify's pricing tiers shift quarterly · the classifier prompt is bound to Dify's workflow contract · the verbatim-output discipline depends on the workflow's "raw passthrough" mode being respected.</div>
+        </div>
+      </div>
+
+      <!-- Option C -->
+      <div class="opt">
+        <div class="tag-line">Option C · Botpress + CMS embed</div>
+        <h3>If <em>WhatsApp</em> matters.</h3>
+        <p class="opt-desc">Same shape as Option B but Botpress for the search lane. Worth it primarily because Botpress's multi-channel deployment (WhatsApp, Telegram, Messenger) reaches audiences where web access is constrained.</p>
+
+        <div class="opt-line"><span class="lbl">Botpress Pro (classifier flow, includes 2.5K AI spend)</span><span class="val">$59 / $99</span></div>
+        <div class="opt-line"><span class="lbl">AI spend overage @ 10K queries (classifier-only)</span><span class="val">$0 – $10</span></div>
+        <div class="opt-line"><span class="lbl">Catalog hosting · embedded in parent CMS</span><span class="val">$0</span></div>
+        <div class="opt-line"><span class="lbl">Domain · CDN</span><span class="val">$0 – $1</span></div>
+
+        <div class="opt-totals">
+          <div class="tcell"><div class="lbl">@ 5K /mo</div><div class="amt">$59 – $65</div></div>
+          <div class="tcell"><div class="lbl">@ 10K /mo</div><div class="amt">$99 – $110</div></div>
+        </div>
+
+        <div class="opt-tradeoffs">
+          <div><span class="tag">Strengths</span>WhatsApp/Telegram out of the box · regional distribution where web reach is constrained · classifier-only LLM use stays within Botpress's free AI tier most months.</div>
+          <div><span class="tag">Trade-offs</span>Flow-builder paradigm requires careful design to enforce verbatim-output discipline · higher vendor lock-in than Dify.</div>
+        </div>
+      </div>
+
+      <!-- Option D -->
+      <div class="opt">
+        <div class="tag-line">Option D · Self-hosted OSS</div>
+        <h3>Build it. <em>Survive deplatforming.</em></h3>
+        <p class="opt-desc">Same topology as Option A but the classifier runs an open-weight model (Llama 3.1 8B or smaller — classification doesn't need a frontier model) through Groq or self-hosted. No proprietary-model dependency anywhere.</p>
+
+        <div class="opt-line"><span class="lbl">Classifier · Llama 3.1 8B via Groq (or self-hosted)</span><span class="val">&lt; $1</span></div>
+        <div class="opt-line"><span class="lbl">Embedding · self-hosted bge-m3</span><span class="val">$0</span></div>
+        <div class="opt-line"><span class="lbl">Catalog hosting · embedded in parent CMS</span><span class="val">$0</span></div>
+        <div class="opt-line"><span class="lbl">App VPS (Hetzner / Fly.io)</span><span class="val">$5 – $10</span></div>
+        <div class="opt-line"><span class="lbl">Postgres + pgvector</span><span class="val">$0 – $5</span></div>
+        <div class="opt-line"><span class="lbl">Domain · CDN</span><span class="val">$0 – $1</span></div>
+
+        <div class="opt-totals">
+          <div class="tcell"><div class="lbl">@ 5K /mo</div><div class="amt">$5 – $12</div></div>
+          <div class="tcell"><div class="lbl">@ 10K /mo</div><div class="amt">$7 – $16</div></div>
+        </div>
+
+        <div class="opt-tradeoffs">
+          <div><span class="tag">Strengths</span>No proprietary-model dependency anywhere · cheapest at scale · classifier task is well within Llama-class capability · fully portable · corpus mirror-able on IPFS/GitHub.</div>
+          <div><span class="tag">Trade-offs</span>More engineering surface than Option B · ops burden · classifier accuracy needs an eval set before launch (see §08).</div>
+        </div>
+      </div>
+
+      <!-- Option E -->
+      <div class="opt span-2">
+        <div class="tag-line">Option E · Vibe-coded on Replit, supervised by Claude</div>
+        <h3>Build it in <em>a weekend.</em></h3>
+        <p class="opt-desc">Same target architecture as Option A — classifier API + pgvector + CMS-embedded catalog — but built using <strong>Replit Agent</strong> (the in-browser autonomous coding agent) with <strong>Claude</strong> sitting alongside as code reviewer and architecture supervisor. PIPD writes the brief; Replit Agent writes the code; Claude reviews diffs and enforces the verbatim-output discipline. No local toolchain, no separate hosting setup, no engineering hire.</p>
+
+        <div class="opt-line"><span class="lbl">Replit Core plan (deploy + database + agent credits)</span><span class="val">$25</span></div>
+        <div class="opt-line"><span class="lbl">LLM classifier · Haiku 4.5 (via Anthropic API key in Replit)</span><span class="val">&lt; $1</span></div>
+        <div class="opt-line"><span class="lbl">Embedding · text-embedding-3-small (OpenAI key in Replit)</span><span class="val">&lt; $1</span></div>
+        <div class="opt-line"><span class="lbl">Claude Pro / Max for supervision (separate human license)</span><span class="val">$0 – $5</span><small style="opacity:.6">amortised</small></div>
+        <div class="opt-line"><span class="lbl">Catalog hosting · embedded in parent CMS</span><span class="val">$0</span></div>
+        <div class="opt-line"><span class="lbl">Postgres + pgvector (Replit-managed)</span><span class="val">included</span></div>
+        <div class="opt-line"><span class="lbl">Domain · CDN</span><span class="val">$0 – $1</span></div>
+
+        <div class="opt-totals">
+          <div class="tcell"><div class="lbl">@ 5K /mo</div><div class="amt">$26 – $33</div></div>
+          <div class="tcell"><div class="lbl">@ 10K /mo</div><div class="amt">$27 – $35</div></div>
+        </div>
+
+        <div class="opt-tradeoffs">
+          <div><span class="tag">Strengths</span>Fastest possible delivery (3–7 days, not weeks) · no engineering hire required · Replit Agent handles boilerplate (auth, deploy, env vars, DB migrations) while Claude reviews architecture and enforces the verbatim-output guarantee · code lives in a real Git repo so migration to Option A or D later is a port, not a rewrite.</div>
+          <div><span class="tag">Trade-offs</span>Replit hosting is convenient but it's another platform that can change terms or be pressured · agent-generated code requires careful Claude-supervised review (especially around the "no LLM in output path" invariant — agents may instinctively add a generation step) · Replit's compute is fine at 5–10K/mo but doesn't scale as cheaply as Hetzner if traffic 10×s.</div>
+        </div>
+
+        <div style="margin-top: 18px; padding: 14px 16px; background: var(--paper-deep); border-left: 3px solid var(--green); font-family: var(--serif); font-size: 13.5px; line-height: 1.5; color: var(--ink-soft);">
+          <strong style="color: var(--ink); font-weight: 500;">Workflow.</strong> PIPD opens a Replit project, pastes this brief (or a condensed spec) into a long-running conversation with Claude (claude.ai or via the Claude code review panel). Claude generates a task list mapping each section of the brief to a concrete file or endpoint. PIPD then asks Replit Agent to implement each task one at a time, and after each completion Claude reviews the diff, flags violations of the verbatim-output guarantee, and writes the next prompt for Replit Agent. The eval set for the classifier (§08) is built the same way — Claude generates the 200-example labelled set; PIPD reviews and edits; Replit Agent wires it into a CI check.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="scenario">
+      <strong>Caveats.</strong> Prices are public list prices as of May 2026 and round up. Infrastructure only — no salaries, no editorial time, no design. The dominant line item across all options is now the <em>platform fee</em> of whichever vendor wraps the search backend, not LLM tokens. Token spend is essentially free because the model only produces a four-letter route label. Prompt caching on the classifier system prompt cuts that line by another 40–60% in steady state. Dify, Botpress, and Replit restructure their plans regularly; treat numbers as orders of magnitude.
+    </div>
+
+    <div class="scenario" style="border-left-color: var(--red);">
+      <strong>Recommendation.</strong> If engineering capacity is the constraint (no in-house developer, no budget for an agency), ship on <strong>Option E (Replit + Claude supervision)</strong> at ~$26–$35/month — it's the fastest path to a working deployment and produces a real codebase that can migrate to A or D later. If a managed-platform UX is preferred (editorial team wants to update the knowledge base through a friendly admin panel), ship on <strong>Option B (Dify + CMS embed)</strong> at ~$55–$140/month. <strong>Option A</strong> is the right bridge if engineering capacity is available from day one. Once the classifier is well-calibrated against an eval set, migrate to <strong>Option D (self-hosted OSS)</strong> over the following quarter for a long-term, deplatform-resistant deployment at ~$5–$16/month. <strong>Option C</strong> only makes sense if WhatsApp/Telegram distribution is a launch requirement. In every option, the catalog stays the same — embedded HTML/JSON on the parent CMS, no model in any output path.
+    </div>
+  </div>
+</section>
+
+<!-- ===== §08 ASSUMPTIONS · RISKS · ROADMAP ===== -->
+<section class="block tinted" id="risks">
+  <style>
+    .risks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) { .risks-grid { grid-template-columns: 1fr; } }
+    .risk-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 26px;
+      position: relative;
+    }
+    .risk-card .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+    .risk-card .tag.green { color: var(--green); }
+    .risk-card .tag.warn { color: var(--warn); }
+    .risk-card h3 {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 500;
+      margin: 0 0 10px;
+      line-height: 1.25;
+    }
+    .risk-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+    .risk-card p code {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--paper-deep);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">§08 — Assumptions · Risks · Roadmap</div>
+      <div>
+        <h2>What could <em>go wrong</em>, and what comes next.</h2>
+        <p class="section-sub">The verbatim-retrieval design removes the worst risks of v0.2 (LLM rewriting drift, generated misattributions) but introduces one important new one: the classifier must correctly distinguish the four routes — and especially must not confuse Scenario A (knowledge query) with Scenario B (unknown myth). Each risk below has a mitigation tied to a build artefact, not a process.</p>
+      </div>
+    </div>
+
+    <div class="risks-grid">
+      <div class="risk-card">
+        <div class="tag">Risk · classifier accuracy</div>
+        <h3>The four-way routing decision is the whole system.</h3>
+        <p>The classifier has to distinguish QUESTION from KEYWORD from KNOWLEDGE_QUERY from UNKNOWN_MYTH. A misroute is the only way a user can land on a wrong answer. <strong>Mitigation:</strong> a hand-built eval set of ~50 examples per route (200 total), enforced as a CI check on any prompt change. Target ≥95% top-1 accuracy on the eval. Confidence floor at 0.62 → otherwise default to UNKNOWN_MYTH (the safest failure mode).</p>
+      </div>
+
+      <div class="risk-card">
+        <div class="tag">Assumption · the mix holds</div>
+        <h3>Browse absorbs 40–60% of traffic.</h3>
+        <p>If the home screen prioritises the search input and buries the theme cards, the search lane bears most of the volume. The cost picture barely changes (LLM use is already negligible) but the discovery surface goes underused. <strong>Mitigation:</strong> design audit at launch; 13 theme cards above the fold on the home page; analytics on browse-vs-search split per surface.</p>
+      </div>
+
+      <div class="risk-card">
+        <div class="tag">Risk · editorial drift</div>
+        <h3>An answer becomes outdated and no one notices.</h3>
+        <p>Every entry has a <code>last_reviewed</code> field; entries older than 6 months surface in the editorial backlog automatically. Death tolls, ICJ proceedings, and policy changes have explicit watch lists. Both surfaces deploy from the same commit, so a single edit updates both lanes.</p>
+      </div>
+
+      <div class="risk-card">
+        <div class="tag">Risk · taxonomy drift</div>
+        <h3>The 13 themes stop matching the corpus.</h3>
+        <p>As new myths are added, the theme mapping must be reviewed. A single myth can sit in multiple themes by design, so growth is mostly absorbed without restructuring. <strong>Mitigation:</strong> theme tags are required fields on every new entry; weekly CI fails if any entry lacks at least one theme; dashboards expose theme size imbalances.</p>
+      </div>
+
+      <div class="risk-card">
+        <div class="tag">Risk · legal pressure</div>
+        <h3>Frivolous defamation / "lawfare" attempts.</h3>
+        <p>Every claim is tied to a primary source, served verbatim. The architecture is unusually defensible: nothing is generated on the fly, no paraphrase can be challenged as misattribution, and every legal-sensitive answer (apartheid / genocide / war crimes) is approved by editorial before deployment. The classifier produces a 4-letter label, not prose; it cannot misquote anyone.</p>
+      </div>
+
+      <div class="risk-card">
+        <div class="tag">Risk · platform deplatforming</div>
+        <h3>Hosting, payments, or app-store removal.</h3>
+        <p>Corpus mirrored on IPFS + GitHub. The catalog is a bundle of static JSON — replicable on any host in minutes. The classifier endpoint is the only piece that needs compute, and it's portable across providers (Option D removes proprietary-model dependency entirely). No payment dependency in the consumer flow.</p>
+      </div>
+
+      <div class="risk-card">
+        <div class="tag green">Roadmap · v0.4</div>
+        <h3>Voice + Telegram bot.</h3>
+        <p>The same classifier-and-retrieval pipeline behind a STT/TTS layer for accessibility, plus a Telegram/WhatsApp surface (via Option C-style infra) for regional distribution where web reach is constrained. Both ride the same corpus and respect the verbatim-output discipline.</p>
+      </div>
+
+      <div class="risk-card">
+        <div class="tag green">Roadmap · v0.5</div>
+        <h3>Multilingual.</h3>
+        <p>Arabic, French, Spanish, German next. The browse lane is trivial to translate (replace the strings in the JSONL); the classifier needs prompt-level translation or a multilingual model variant. Embeddings move to bge-m3 (already supports 100+ languages). Editorial team grows accordingly.</p>
+      </div>
+
+      <div class="risk-card">
+        <div class="tag green">Roadmap · v0.6</div>
+        <h3>Source provenance graph.</h3>
+        <p>For each myth, render the network of sources cited and how they cite each other. Lets users see at a glance that a claim isn't propped up by a single op-ed but by overlapping UN, NGO, and academic work. Lives naturally in the browse lane — no model needed.</p>
+      </div>
+
+      <div class="risk-card">
+        <div class="tag green">Roadmap · v1.0</div>
+        <h3>Federated corpora.</h3>
+        <p>Same engine, different corpora. The verbatim-retrieval architecture generalises to any closed-domain Q&amp;A with a curated, sourced answer set — climate denial, vaccine disinformation, historical revisionism. The themes file and the canned-response templates are the only per-corpus artefacts that need custom work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer style="padding:70px 0 50px; background:var(--ink); color:var(--paper-deep);">
+  <style>
+    footer .wrap { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
+    @media (max-width: 760px) { footer .wrap { grid-template-columns: 1fr; gap: 30px; } }
+    footer h6 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin: 0 0 16px;
+      color: var(--paper);
+    }
+    footer p {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--paper-deep);
+      line-height: 1.5;
+      margin: 0;
+    }
+    footer p + p { margin-top: 10px; }
+    footer .colophon {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--rule);
+      margin-top: 30px;
+      border-top: 1px solid rgba(244,238,226,.15);
+      padding-top: 20px;
+    }
+    footer .flag {
+      display: inline-flex; vertical-align: middle;
+      width: 24px; height: 16px;
+      margin-right: 8px;
+      background:
+        linear-gradient(to bottom,
+          #000 0 33%,
+          #fff 33% 66%,
+          var(--green) 66% 100%);
+      position: relative;
+    }
+    footer .flag::before {
+      content: ""; position: absolute; left: 0; top: 0;
+      width: 0; height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 10px solid var(--red);
+    }
+  </style>
+
+  <div class="wrap">
+    <div>
+      <h6>Pali Answers · v0.3</h6>
+      <p>A verbatim-retrieval answering tool. Two doors — a search bot whose classifier routes the user across four routes, and a 13-theme catalog with accordion myth pages — open onto the same canonical corpus and the same two canned-response templates.</p>
+      <p>Editorially independent. Source-cited. The model is a classifier, never a writer.</p>
+    </div>
+    <div>
+      <h6>Status</h6>
+      <p>Concept brief · v0.3<br>PIPD feedback applied<br>Knowledge base ready<br>IA mapped<br>Engineering: not yet started</p>
+    </div>
+    <div>
+      <h6>Stewardship</h6>
+      <p><span class="flag" aria-hidden="true"></span>Editorially independent<br>Open-source corpus<br>No advertising<br>Mirror-able on IPFS</p>
+    </div>
+    <div class="colophon" style="grid-column: 1 / -1">
+      Set in Fraunces &amp; Inter Tight · JetBrains Mono · Concept document, not a product roadmap. v0.3 supersedes v0.2 and applies the PIPD feedback note (May 2026): no LLM in any output path, verbatim canonical answers with a fixed template header, four search routes (question · keyword · knowledge query · unknown myth), 13 themes with accordion browse. All quoted sources are real and pre-existing in the project corpus.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
